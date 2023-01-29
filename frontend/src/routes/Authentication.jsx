@@ -14,7 +14,7 @@ export default function Authentication() {
   return (
     <>
       {/* flex  */}
-      <Flex align={"center"} justify="center" h="100vh">
+      <Flex align={"center"} justify="center" h="90vh">
         {/* tabs */}
         <Tabs isFitted variant="enclosed" border="1px" borderRadius={"1rem"} p="1rem" borderColor="teal">
           {/* tablist */}

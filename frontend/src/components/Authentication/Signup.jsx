@@ -1,4 +1,5 @@
 import {
+Text,
   Box,
   Button,
   FormControl,
@@ -8,13 +9,21 @@ import {
   InputRightElement,
 } from "@chakra-ui/react";
 import React, { useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { signUp } from "../../redux/AuthReducer/action";
 
 export default function Signup() {
+
+  const dispatch = useDispatch()
   const [show, setShow] = useState(false);
   const [userInput, setUserInput] = useState([{ name:"", email:"", password:"" }])
+  const isProcessing = useSelector((state) => state.AuthReducer.isProcessing)
+  const signupMessage = useSelector((state) => state.AuthReducer.signupMessage)
 
   function handelInputSubmit(){
     
+    dispatch(signUp(userInput.name, userInput.email, userInput.password))
+
   }
 
   return (
@@ -50,9 +59,17 @@ export default function Signup() {
           </InputGroup>
         </FormControl>
 
-<Button mt="1rem" color="white" bg="teal" w="full" onClick={(e)=>{ handelInputSubmit() }}>
+        <Button mt="1rem" color="white" bg="teal" w="full"
+           colorScheme="teal"
+           isLoading={isProcessing}
+           loadingText={isProcessing ? "Please Wait" : ""}
+           variant={isProcessing ? "outline" : "solid"}
+           onClick={(e)=>{ handelInputSubmit() }}>
     Signup
 </Button>
+
+<Text as="b" color="red">{signupMessage}</Text>
+
 
       </Box>
     </>
