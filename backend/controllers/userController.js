@@ -2,11 +2,11 @@ const {User} = require('../models/userModel');
 const bcrypt = require('bcrypt');
 const jwt = require('jsonwebtoken');
 require('dotenv').config();
-const generateToken = require('../utils/generateToken');
+
 
 
 const registerUser = async(req,res) => {
-    // console.log(req.body)
+
     const {name,email,password} = req.body;
 
     const isUser = await User.findOne({email:email})
@@ -37,6 +37,7 @@ const registerUser = async(req,res) => {
 
 const loginUser = async(req,res) => {
     const {email,password} = req.body;
+    
     if(!email || !password){
         res.status(422).json({error:"Please Provide email and password"})
     }
