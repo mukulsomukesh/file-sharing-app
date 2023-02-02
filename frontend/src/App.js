@@ -1,11 +1,17 @@
 import './App.css';
+import Navbar from './components/Navbar';
+import AllRoutes from './routes/AllRoutes';
 
 function App() {
   return (
-    <div>
-      share files
-      <iframe src={`http://res.cloudinary.com/dmzzzl5jj/image/upload/v1675091323/hjdjo91qmwmlgzwqsksp.pdf`} />
-    </div>
+
+    <>
+
+<Navbar />
+<AllRoutes />
+
+    </>
+
   );
 }
 
