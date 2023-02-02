@@ -5,7 +5,7 @@ import * as types from "./actionTypes";
 const signUp = (name, email, password) => (dispatch) => {
   dispatch({ type: types.USER_SIGNUP_PROCESS });
   axios
-    .post("https://vast-erin-earthworm.cyclic.app/user/signup", {
+    .post("http://localhost:5000/user", {
       name,
       email,
       password,
@@ -13,6 +13,7 @@ const signUp = (name, email, password) => (dispatch) => {
     .then((res) => {
       console.log(res);
       dispatch({ type: types.USER_SIGNUP_SUCCESS });
+      
     })
     .catch((err) => {
       console.log(err);
@@ -24,12 +25,14 @@ const signUp = (name, email, password) => (dispatch) => {
 const login = (email, password) => (dispatch) => {
   dispatch({ type: types.USER_LOGIN_PROCESS });
   axios
-    .post("https://vast-erin-earthworm.cyclic.app/user/login", {
+    .post("http://localhost:5000/user/login", {
       email,
       password,
     })
     .then((res) => {
+      console.log(res)
       dispatch({ type: types.USER_LOGIN_SUCCESS, payload: res });
+      localStorage.setItem("jwt", res.data.token)
     })
     .catch((err) => {
       dispatch({
