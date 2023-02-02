@@ -1,29 +1,31 @@
 const {File} = require('../models/fileModel')
-const multer  = require('multer')
-const upload = multer({ dest: "../upload" })
+
 
 const getFile = (req,res) => {
-    res.send("all files")
+    File.find().then(posts => {
+        res.json({posts})
+    })
+    .catch(err => {
+        console.log(err)
+    })
     
 }
 
 const uploadFile = (req,res) => {
-  
-    
-  
-    // const payload = req.body
-    // const post = new File({
-    //     name:payload.name,
-    //     fileType:payload.fileType,
-    //     isProtected:payload.isProtected,
-    //     password:payload.password
-    // })
-    // post.save().then(result => {
-    //     res.json({post:result})
-    // })
-    // .catch(err => {
-    //     console.log(err)
-    // })
+  const {name,fileType,isProtected,password,pic} = req.body;
+  const post = new File({
+    name,
+    fileType,
+    isProtected,
+    password,
+    photo:pic
+  })
+  post.save().then(result => {
+    res.json({post:result})
+  })
+  .catch(err => {
+    console.log(err)
+  })
 }
 
 
