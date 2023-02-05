@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import M from 'materialize-css';
+// import M from 'materialize-css';
 
 export default function UploadFiles() {
   const [name,setName] = useState("");
@@ -30,10 +30,10 @@ export default function UploadFiles() {
       .then(data => {
         console.log(data)
         if(data.error){
-          M.toast({html: data.error,classes:'#d50000 red accent-4'})
+          // M.toast({html: data.error,classes:'#d50000 red accent-4'})
         }
         else{
-          M.toast({html:'Created Post Succesfully!',classes:'#1de9b6 teal accent-3'})
+          // M.toast({html:'Created Post Succesfully!',classes:'#1de9b6 teal accent-3'})
           // navigate('/')
         }
       }).catch(err => {
@@ -79,7 +79,5 @@ export default function UploadFiles() {
       </button>
     </div>
     </>
-    
-
   )
 }

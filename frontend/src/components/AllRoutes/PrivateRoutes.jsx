@@ -5,8 +5,7 @@ import { Navigate } from 'react-router-dom'
 
 export default function PrivateRoute({children}) {
 
-    // const isLogin = useSelector((store) => store.AuthReducer.isLogin)
-    const isLogin = true
+    const isLogin = useSelector((store) => store.AuthReducer.isLogin)
 
     
     if(!isLogin){

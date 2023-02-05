@@ -38,7 +38,7 @@ export default function Signup() {
         {/* email input */}
         <FormControl isRequired mt="1rem">
           <FormLabel>Email</FormLabel>
-          <Input placeholder="Enter Your Email!" value={userInput.email} onChange={(e)=> setUserInput((prev)=>( {...prev, email:e.target.value} ))} />
+          <Input  placeholder="Enter Your Email!" value={userInput.email} onChange={(e)=> setUserInput((prev)=>( {...prev, email:e.target.value} ))} />
         </FormControl>
 
         {/* password input */}
@@ -47,12 +47,11 @@ export default function Signup() {
           <InputGroup size="md">
             <Input
             value={userInput.password} onChange={(e)=> setUserInput((prev)=>( {...prev, password:e.target.value} ))}
-              pr="4.5rem"
               type={show ? "text" : "password"}
               placeholder="Enter password"/>
 
             <InputRightElement width="4.5rem">
-              <Button  bg="teal" color="white" h="1.75rem" size="sm" onClick={(e)=>{ setShow(!show) }}>
+              <Button mt="0.7rem" bg="teal" color="white" h="1.75rem" size="sm" onClick={(e)=>{ setShow(!show) }}>
                 {show ? "Hide" : "Show"}
               </Button>
             </InputRightElement>
