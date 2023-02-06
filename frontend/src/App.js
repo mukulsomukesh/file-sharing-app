@@ -8,6 +8,7 @@ function App() {
     <>
 
 <Box
+bg="#f4f5f7"
   w='100vw'
   h='100vh'
   minH="fit-content">

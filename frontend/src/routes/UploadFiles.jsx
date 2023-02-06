@@ -10,9 +10,8 @@ export default function UploadFiles() {
   const [image,setImage] = useState("");
   const [url,setUrl] = useState("");
   const [fileProtected, setFileProtected] = useState(false)
+  const [process, setProcess] = useState(false)
 
-
-  const toast = useToast()
 
   useEffect(()=>{
     console.log(url)
@@ -41,10 +40,15 @@ console.log("success")
       }).catch(err => {
         console.log(err)
       })
+
+      setProcess(false)
   },[url])
 
 
   const postDetails = async () => {
+
+    setProcess(true)
+
     const data = new FormData()
     data.append("file",image)
     data.append("upload_preset","filesharing-app")
@@ -78,24 +82,16 @@ return ans = await fetch("https://api.cloudinary.com/v1_1/dmzzzl5jj/image/upload
 <Box w="20rem" display="flex" flexDirection="column" gap="1rem" boxShadow="dark-lg" p="1.5rem" borderRadius="1rem" >
   <Input  type='file' onChange={(e) => setImage(e.target.files[0])}   />
   <Checkbox onChange={()=>{ setFileProtected(!fileProtected) }}> Set Password </Checkbox>
-  <Input placeholder='Enter Password' type="text" variant={"outline"}  disabled={!fileProtected} />
-  <Button bg="teal" color="white" onClick={postDetails}> Upload File </Button>
+  <Input value={password} placeholder='Set Password' onChange={(e) => setPassword(e.target.value)} type="text" disabled={!fileProtected} />
+  <Button bg="teal" color="white" onClick={postDetails}
+             colorScheme="teal"
+             isLoading={process}
+             loadingText={process ? "Please Wait" : ""}
+             variant={process ? "outline" : "solid"}
+  > Upload File </Button>
 
 </Box>
 </Flex>
-
-    {/* <div>UploadFiles</div>
-
-    <div>
-      <input type='text' value={name} placeholder='name' onChange={(e) => setName(e.target.value)} />
-      <input type='text' value={fileType} placeholder='file-type' onChange={(e) => setFiletype(e.target.value)} />
-      <input type='checkbox' value={protect} placeholder='isProtected' onChange={(e) => setProtect(e.target.value)} />
-      <input type='text' value={password} placeholder='password' onChange={(e) => setPassword(e.target.value)} />
-      <input type='file' onChange={(e) => setImage(e.target.files[0])} />
-      <button onClick={postDetails} >
-        Submit Post
-      </button>
-    </div> */}
     </>
   )
 }
