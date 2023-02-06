@@ -1,4 +1,4 @@
-import './App.css';
+import { Box } from '@chakra-ui/react';
 import Navbar from './components/Navbar';
 import AllRoutes from './routes/AllRoutes';
 
@@ -7,9 +7,18 @@ function App() {
 
     <>
 
+<Box
+  w='100vw'
+  h='100vh'
+  minH="fit-content">
+
+{/* navbar */}
 <Navbar />
+
+{/* allroutes */}
 <AllRoutes />
 
+</Box>
     </>
 
   );

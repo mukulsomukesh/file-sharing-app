@@ -16,7 +16,7 @@ export default function Authentication() {
       {/* flex  */}
       <Flex align={"center"} justify="center" h="90vh">
         {/* tabs */}
-        <Tabs isFitted variant="enclosed" border="1px" borderRadius={"1rem"} p="1rem" borderColor="teal" w="20rem">
+        <Tabs bg="white" isFitted variant="enclosed" borderRadius="1rem" boxShadow="dark-lg" p="1rem" w="20rem">
           {/* tablist */}
           <TabList mb="1em" cursor={"pointer"}>
             <Tab as="b"> Signup</Tab>

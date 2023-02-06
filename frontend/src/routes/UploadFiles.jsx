@@ -1,23 +1,26 @@
+import { Alert, AlertIcon, Box, Button, Center, Checkbox, Flex, Heading, Input, useToast } from '@chakra-ui/react';
 import React, { useEffect, useState } from 'react';
-// import M from 'materialize-css';
 
 export default function UploadFiles() {
+
   const [name,setName] = useState("");
   const [fileType,setFiletype] = useState("");
   const [protect,setProtect] = useState(false);
   const [password,setPassword] = useState("");
   const [image,setImage] = useState("");
   const [url,setUrl] = useState("");
+  const [fileProtected, setFileProtected] = useState(false)
+
+
+  const toast = useToast()
 
   useEffect(()=>{
-    if(url)
-    {
-      fetch('http://localhost:5000/api/upload',{
+    console.log(url)
+      fetch('http://localhost:8080/api/upload',{
       method:"post",
       headers:{
         "Content-Type":"application/json",
         "Authorization":"Bearer "+localStorage.getItem('jwt')
-
       },
       body:JSON.stringify({
         name,
@@ -30,31 +33,31 @@ export default function UploadFiles() {
       .then(data => {
         console.log(data)
         if(data.error){
-          // M.toast({html: data.error,classes:'#d50000 red accent-4'})
+console.log("success")
         }
         else{
-          // M.toast({html:'Created Post Succesfully!',classes:'#1de9b6 teal accent-3'})
-          // navigate('/')
+          console.log("fail")
         }
       }).catch(err => {
         console.log(err)
       })
-    }
-    
   },[url])
 
-  const postDetails = () => {
+
+  const postDetails = async () => {
     const data = new FormData()
     data.append("file",image)
     data.append("upload_preset","filesharing-app")
     data.append("cloud_name","dmzzzl5jj")
-    fetch("https://api.cloudinary.com/v1_1/dmzzzl5jj/image/upload",{
+
+   let ans;
+return ans = await fetch("https://api.cloudinary.com/v1_1/dmzzzl5jj/image/upload",{
       method:"post",
       body:data
     })
     .then(res => res.json())
     .then(data => {
-      // console.log(data)
+      console.log(data)
       setUrl(data.url)
     })
     .catch(err => {
@@ -66,7 +69,22 @@ export default function UploadFiles() {
 
   return (
     <>
-    <div>UploadFiles</div>
+
+<Flex h="85vh" align="center" justify="center" flexDirection="column" gap="1rem" >
+
+
+<Heading> Upload File </Heading>
+
+<Box w="20rem" display="flex" flexDirection="column" gap="1rem" boxShadow="dark-lg" p="1.5rem" borderRadius="1rem" >
+  <Input  type='file' onChange={(e) => setImage(e.target.files[0])}   />
+  <Checkbox onChange={()=>{ setFileProtected(!fileProtected) }}> Set Password </Checkbox>
+  <Input placeholder='Enter Password' type="text" variant={"outline"}  disabled={!fileProtected} />
+  <Button bg="teal" color="white" onClick={postDetails}> Upload File </Button>
+
+</Box>
+</Flex>
+
+    {/* <div>UploadFiles</div>
 
     <div>
       <input type='text' value={name} placeholder='name' onChange={(e) => setName(e.target.value)} />
@@ -77,7 +95,7 @@ export default function UploadFiles() {
       <button onClick={postDetails} >
         Submit Post
       </button>
-    </div>
+    </div> */}
     </>
   )
 }

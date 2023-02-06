@@ -57,7 +57,7 @@ import { Navigate, useNavigate } from 'react-router-dom'
               placeholder="Enter password"/>
 
             <InputRightElement width="4.5rem">
-              <Button mt="0.7rem" bg="teal" color="white" h="1.75rem" size="sm" onClick={(e)=>{ setShow(!show) }}>
+              <Button bg="teal" color="white" h="1.75rem" size="sm" onClick={(e)=>{ setShow(!show) }}>
                 {show ? "Hide" : "Show"}
               </Button>
             </InputRightElement>
