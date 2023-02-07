@@ -1,5 +1,6 @@
 import { Alert, AlertIcon, Box, Button, Center, Checkbox, Flex, Heading, Input, useToast } from '@chakra-ui/react';
 import React, { useEffect, useState } from 'react';
+import { ImUpload } from "react-icons/im";
 
 export default function UploadFiles() {
 
@@ -14,8 +15,8 @@ export default function UploadFiles() {
 
 
   useEffect(()=>{
-    console.log(url)
-      fetch('http://localhost:8080/api/upload',{
+    console.log("token ", typeof localStorage.getItem('jwt'), localStorage.getItem('jwt'))
+      fetch('https://file-sharing-app-ioyi.onrender.com/api/upload',{
       method:"post",
       headers:{
         "Content-Type":"application/json",
@@ -80,9 +81,19 @@ return ans = await fetch("https://api.cloudinary.com/v1_1/dmzzzl5jj/image/upload
 <Heading> Upload File </Heading>
 
 <Box w="20rem" display="flex" flexDirection="column" gap="1rem" boxShadow="dark-lg" p="1.5rem" borderRadius="1rem" >
+  
+  {/* fine input */}
   <Input  type='file' onChange={(e) => setImage(e.target.files[0])}   />
+
+
+
+{/* set password checkbox */}
   <Checkbox onChange={()=>{ setFileProtected(!fileProtected) }}> Set Password </Checkbox>
+  
+  {/* enter password box */}
   <Input value={password} placeholder='Set Password' onChange={(e) => setPassword(e.target.value)} type="text" disabled={!fileProtected} />
+
+{/* upload button */}
   <Button bg="teal" color="white" onClick={postDetails}
              colorScheme="teal"
              isLoading={process}
