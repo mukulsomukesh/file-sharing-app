@@ -1,6 +1,7 @@
 import { Alert, AlertIcon, Box, Button, Center, Checkbox, Flex, Heading, Input, useToast } from '@chakra-ui/react';
 import React, { useEffect, useState } from 'react';
 import { ImUpload } from "react-icons/im";
+import axios from "axios"
 
 export default function UploadFiles() {
 
@@ -15,35 +16,70 @@ export default function UploadFiles() {
 
 
   useEffect(()=>{
-    console.log("token ", typeof localStorage.getItem('jwt'), localStorage.getItem('jwt'))
-      fetch('https://file-sharing-app-ioyi.onrender.com/api/upload',{
-      method:"post",
-      headers:{
-        "Content-Type":"application/json",
-        "Authorization":"Bearer "+localStorage.getItem('jwt')
-      },
-      body:JSON.stringify({
-        name,
-        fileType,
-        isProtected:protect,
-        password,
-        pic:url
-      })
-      }).then(res => res.json())
-      .then(data => {
-        console.log(data)
-        if(data.error){
-console.log("success")
-        }
-        else{
-          console.log("fail")
-        }
-      }).catch(err => {
-        console.log(err)
-      })
+
+
+//       fetch('https://file-sharing-app-ioyi.onrender.com/api/upload',{
+//       method:"post",
+//       headers:{
+//         "Content-Type":"application/json",
+//         "Authorization":"Bearer "+localStorage.getItem('jwt')
+//       },
+//       body:JSON.stringify({
+//         name,
+//         fileType,
+//         isProtected:protect,
+//         password,
+//         pic:url
+//       })
+//       }).then(res => res.json())
+//       .then(data => {
+//         console.log(data)
+//         if(data.error){
+// console.log("success")
+//         }
+//         else{
+//           console.log("fail")
+//         }
+//       }).catch(err => {
+//         console.log(err)
+//       })
 
       setProcess(false)
   },[url])
+
+
+  const uploadToMongodb = async () =>{
+    console.log("token ", typeof localStorage.getItem('jwt'), localStorage.getItem('jwt'))
+
+    let config = {
+      headers: {
+        "Authorization":"Bearer "+localStorage.getItem('jwt')
+      }
+    }
+
+    let obj = {
+        name:"ex",
+        fileType:"ex",
+        isProtected:protect,
+        password:"",
+        photo:url      
+    }
+
+    // make get request
+axios.post(`https://file-sharing-app-ioyi.onrender.com/api/upload/`, obj, config)
+.then((res)=>{
+  // if we get response
+console.log("res = ", res)
+})
+.catch((err)=>{
+  // 
+  console.log("error = ",err)
+})
+
+console.log("over  = ")
+setProcess(false)
+  }
+
 
 
   const postDetails = async () => {
@@ -56,7 +92,7 @@ console.log("success")
     data.append("cloud_name","dmzzzl5jj")
 
    let ans;
-return ans = await fetch("https://api.cloudinary.com/v1_1/dmzzzl5jj/image/upload",{
+      ans = await fetch("https://api.cloudinary.com/v1_1/dmzzzl5jj/image/upload",{
       method:"post",
       body:data
     })
@@ -68,6 +104,9 @@ return ans = await fetch("https://api.cloudinary.com/v1_1/dmzzzl5jj/image/upload
     .catch(err => {
       console.log(err)
     })
+console.log("send to cloudnary ")
+
+uploadToMongodb()
 
   }
 
