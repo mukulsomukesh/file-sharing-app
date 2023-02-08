@@ -6,6 +6,7 @@ const signUp = (name, email, password) => (dispatch) => {
   dispatch({ type: types.USER_SIGNUP_PROCESS });
   axios
     .post("http://localhost:5000/user", {
+
       name,
       email,
       password,
@@ -26,6 +27,7 @@ const login =  (email, password) => (dispatch) => {
   dispatch({ type: types.USER_LOGIN_PROCESS });
   axios
     .post("http://localhost:5000/user/login", {
+
       email,
       password,
     })
