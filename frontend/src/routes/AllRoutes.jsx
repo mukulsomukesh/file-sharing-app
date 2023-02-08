@@ -31,7 +31,7 @@ export default function AllRoutes() {
        
        <Route path="/Authentication" element={<Authentication />}></Route>
 
-       <Route path="/Download" element={<DownloadFile />}></Route>
+       <Route path="/Download/:id" element={<DownloadFile />}></Route>
       </Routes>
     </>
   );

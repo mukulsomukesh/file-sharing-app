@@ -8,12 +8,34 @@ const initialState = {
   
   isError: false,
   message: "",
+
+  singleFile:{}
+
 };
 
 export const reducer = (state = initialState, action) => {
   const { type, payload } = action;
 
   switch (type) {
+    case types.SINGLE_FILE_LOADING:
+      return {
+        ...state,
+        isLoading: true,
+        isError:false
+      };
+      case types.SINGLE_FILE_LOADING_SUCCESS:
+        return {
+          ...state,
+          isError:false,
+          isLoading: false,
+          singleFile:payload
+        };
+        case types.SINGLE_FILE_LOADING_FAILURE:
+          return {
+            ...state,
+            isLoading: false,
+            isError:true
+          };  
     case types.ALL_FILES_LOADING:
       return {
         ...state,

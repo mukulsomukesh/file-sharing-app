@@ -55,4 +55,30 @@ const uploadToServer =
   }
 
 
-export { uploadToServer, getAllFiles };
+  // get a single file
+  const getSingleFile = (id) => (dispatch)=>{
+
+    dispatch({ type: types.SINGLE_FILE_LOADING });
+
+    axios.get(
+      `http://localhost:8080/api/get/${id}`,{
+        headers: {
+          Authorization: "Bearer " + localStorage.getItem("jwt"),
+        },
+      }
+    )
+    .then((res) => {
+      // if we get response
+      console.log(res);
+      dispatch({ type: types.SINGLE_FILE_LOADING_SUCCESS, payload:res.data});
+    })
+    .catch((err) => {
+      console.log(err);
+      dispatch({ type: types.SINGLE_FILE_LOADING_FAILURE });
+    });
+
+    console.log(typeof id)
+    console.log(id)
+  }
+
+export { uploadToServer, getAllFiles, getSingleFile };
