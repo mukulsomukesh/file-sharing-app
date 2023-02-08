@@ -5,7 +5,7 @@ import * as types from "./actionTypes";
 const signUp = (name, email, password) => (dispatch) => {
   dispatch({ type: types.USER_SIGNUP_PROCESS });
   axios
-    .post("http://localhost:5000/user", {
+    .post("https://file-sharing-w3xp.onrender.com/user", {
 
       name,
       email,
@@ -26,7 +26,7 @@ const signUp = (name, email, password) => (dispatch) => {
 const login =  (email, password) => (dispatch) => {
   dispatch({ type: types.USER_LOGIN_PROCESS });
   axios
-    .post("http://localhost:5000/user/login", {
+    .post("https://file-sharing-w3xp.onrender.com/user/login", {
 
       email,
       password,
