@@ -18,7 +18,8 @@ const uploadFile = (req,res) => {
     fileType,
     isProtected,
     password,
-    photo:pic
+    fileData:pic,
+    user:req.user._id
   })
   post.save().then(result => {
     res.json({post:result})

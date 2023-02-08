@@ -14,32 +14,34 @@ export default function UploadFiles() {
 
 
   useEffect(()=>{
-    console.log(url)
-      fetch('http://localhost:8080/api/upload',{
-      method:"post",
-      headers:{
-        "Content-Type":"application/json",
-        "Authorization":"Bearer "+localStorage.getItem('jwt')
-      },
-      body:JSON.stringify({
-        name,
-        fileType,
-        isProtected:protect,
-        password,
-        pic:url
-      })
-      }).then(res => res.json())
-      .then(data => {
-        console.log(data)
-        if(data.error){
-console.log("success")
-        }
-        else{
-          console.log("fail")
-        }
-      }).catch(err => {
-        console.log(err)
-      })
+    
+      if(url){
+        fetch('http://localhost:8080/api/upload',{
+          method:"post",
+          headers:{
+            "Content-Type":"application/json",
+            "Authorization":"Bearer "+localStorage.getItem('jwt')
+          },
+          body:JSON.stringify({
+            name,
+            fileType,
+            isProtected:protect,
+            password,
+            pic:url
+          })
+          }).then(res => res.json())
+          .then(data => {
+            console.log(data)
+            if(data.error){
+              console.log("Something went wrong!")
+            }
+            else{
+              console.log("Success!")
+            }
+          }).catch(err => {
+            console.log(err)
+          })
+      }
 
       setProcess(false)
   },[url])
@@ -54,8 +56,7 @@ console.log("success")
     data.append("upload_preset","filesharing-app")
     data.append("cloud_name","dmzzzl5jj")
 
-   let ans;
-return ans = await fetch("https://api.cloudinary.com/v1_1/dmzzzl5jj/image/upload",{
+      fetch("https://api.cloudinary.com/v1_1/dmzzzl5jj/image/upload",{
       method:"post",
       body:data
     })

@@ -15,9 +15,13 @@ const fileSchema = mongoose.Schema({
     password:{
         type:String
     },
-    photo:{
-        type:String,
-        required:true
+    fileData:{
+        type:String
+    },
+    user:{
+        type:mongoose.Schema.Types.ObjectId,
+        required:true,
+        ref:"User"
     }
 },{
     timestamps:true
