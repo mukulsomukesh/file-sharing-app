@@ -1,6 +1,5 @@
 import {
   Box,
-  Button,
   Flex,
   IconButton,
   SimpleGrid,
@@ -12,6 +11,7 @@ import ShareFile from "../components/DisplayFiles/ShareFile";
 import FileDetails from "../components/DisplayFiles/FileDetails";
 import { getAllFiles } from "../redux/AppReducer/action";
 import { useDispatch, useSelector } from "react-redux";
+import Loader from "../components/DisplayFiles/Loader";
 
 export default function DisplayFiles() {
   const dispatch = useDispatch();
@@ -27,7 +27,7 @@ export default function DisplayFiles() {
   return (
     <>
 
-{isLoading? "Please Wait!": "" }
+{isLoading?  <Loader /> : "" }
 
       {/* grid */}
       <SimpleGrid minChildWidth="130px" spacing="2rem" p="2rem">
