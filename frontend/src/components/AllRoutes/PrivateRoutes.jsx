@@ -7,7 +7,7 @@ export default function PrivateRoute({children}) {
     const isLogin = useSelector((store) => store.AuthReducer.isLogin)
 
     
-    if(isLogin){
+    if(!isLogin){
     return <Navigate to="/authentication"> </Navigate>
     }
     else{

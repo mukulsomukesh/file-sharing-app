@@ -7,9 +7,8 @@ import {
   Text,
 } from "@chakra-ui/react";
 import React from "react";
-import { GiHamburgerMenu, GiShare } from "react-icons/gi";
 import { BsFileEarmarkMedical, BsEyeFill } from "react-icons/bs";
-import ShareFile from "../components/DisplayFiles/ShareFile"
+import ShareFile from "../components/DisplayFiles/ShareFile";
 import FileDetails from "../components/DisplayFiles/FileDetails";
 
 export default function DisplayFiles() {
@@ -17,7 +16,11 @@ export default function DisplayFiles() {
 
   return (
     <>
+
+    {/* grid */}
       <SimpleGrid minChildWidth="130px" spacing="2rem" p="2rem">
+        
+        {/* map files */}
         {arr.map((el) => (
           <Box
             overflow="hidden"
@@ -29,7 +32,6 @@ export default function DisplayFiles() {
             border="1px"
             borderColor="teal"
           >
-            {/* <GiHamburgerMenu /> */}
 
             <BsFileEarmarkMedical size="100px" />
 
@@ -42,19 +44,23 @@ export default function DisplayFiles() {
               cursor={"pointer"}
             >
 
+              {/* preview button */}
+              <IconButton
+                h="fit-content"
+                w="fit-content"
+                _hover={{ background: "transparent" }}
+                icon={<BsEyeFill size="20px" />}
+              />
 
-<IconButton h="fit-content" w="fit-content" _hover={{background:"transparent"}} icon={ <BsEyeFill size="20px" />} />
-              {/* < size="20px" /> */}
-              
 
               {/* share file option */}
               <ShareFile />
 
-{/* file details */}
+              {/* file details */}
               <FileDetails />
-
             </Flex>
 
+{/* file name */}
             <Box bg="teal" p="0.5rem" color="white">
               <Text lineHeight="1rem"> this is my file name </Text>
             </Box>
