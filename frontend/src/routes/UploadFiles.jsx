@@ -30,6 +30,11 @@ export default function UploadFiles() {
       let pic = url;
       dispatch(uploadToServer(name, fileType, password, isProtected, pic));
       setProcess(false);
+
+      setFiletype("")
+      setName("")
+      setPassword("")
+      setFileProtected(false)
     }
   }, [url]);
 

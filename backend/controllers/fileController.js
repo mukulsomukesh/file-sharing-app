@@ -30,5 +30,15 @@ const uploadFile = (req,res) => {
 }
 
 
+const getSingleFile = (req, res) => {
+  File.findById(req.params.id)
+    .then(post => {
+      if (!post) res.status(404).json({ message: "File not found" });
+      res.json(post);
+    })
+    .catch(err => {
+      console.log(err);
+    });
+};
 
-module.exports = {getFile , uploadFile}
+module.exports = {getFile , uploadFile, getSingleFile}
