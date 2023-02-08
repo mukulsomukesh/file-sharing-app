@@ -5,11 +5,13 @@ const initialState = {
   allFiles: [],
   
   isUploading:false,
-  
+  uploadedFileId:"",
+
   isError: false,
   message: "",
 
   singleFile:{}
+
 
 };
 
@@ -71,6 +73,7 @@ export const reducer = (state = initialState, action) => {
         isUploading:false,
         isError: false,
         message: "File Upload Success!",
+        uploadedFileId:payload
       };
     case types.UPLOAD_FILE_FAILURE:
       return {

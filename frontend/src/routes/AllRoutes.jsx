@@ -5,6 +5,7 @@ import Authentication from "./Authentication";
 import DisplayFiles from "./DisplayFiles";
 import DownloadFile from "./DownloadFile";
 import UploadFiles from "./UploadFiles";
+import UploadFileSuccess from "./UploadFileSuccess"
 
 export default function AllRoutes() {
   return (
@@ -32,6 +33,11 @@ export default function AllRoutes() {
        <Route path="/Authentication" element={<Authentication />}></Route>
 
        <Route path="/Download/:id" element={<DownloadFile />}></Route>
+
+       <Route path="/UploadFileSuccess" element={ <UploadFileSuccess /> }></Route>
+
+       <Route path="*" element={<h1> Nothing over here </h1>}></Route>
+
       </Routes>
     </>
   );

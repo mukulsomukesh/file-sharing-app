@@ -11,6 +11,7 @@ import {
 import React, { useEffect, useState } from "react";
 import { uploadToServer } from "../redux/AppReducer/action";
 import { useDispatch, useSelector } from "react-redux";
+import { useNavigate } from "react-router-dom";
 
 export default function UploadFiles() {
 
@@ -23,18 +24,19 @@ export default function UploadFiles() {
   const [url, setUrl] = useState("");
   const [fileProtected, setFileProtected] = useState(false);
   const [process, setProcess] = useState(false);
+  const navigate = useNavigate()
+
+
 
   useEffect(() => {
     if (url) {
       let isProtected = fileProtected;
       let pic = url;
       dispatch(uploadToServer(name, fileType, password, isProtected, pic));
+      
       setProcess(false);
 
-      setFiletype("")
-      setName("")
-      setPassword("")
-      setFileProtected(false)
+      navigate("/UploadFileSuccess")
     }
   }, [url]);
 
@@ -70,7 +72,7 @@ export default function UploadFiles() {
   return (
     <>
       <Flex
-        h="85vh"
+        h="91vh"
         align="center"
         justify="center"
         flexDirection="column"
@@ -78,6 +80,7 @@ export default function UploadFiles() {
       >
         <Heading> Upload File </Heading>
 
+{/*   this input box contain all the inputs */}
         <Box
           w="20rem"
           display="flex"
@@ -85,16 +88,38 @@ export default function UploadFiles() {
           gap="1rem"
           boxShadow="dark-lg"
           p="1.5rem"
+          border="1px"
+          borderColor="teal"
           borderRadius="1rem"
         >
-          <Input type="file" onChange={(e) => setImage(e.target.files[0])} />
+
+{/* this box contain only file input */}
+            <Box height="200px"
+                    border="1px"
+                    borderColor="teal"
+                    borderStyle="dotted"
+                    borderRadius="1rem"
+                    overflow="hidden"
+      backgroundImage={`url(https://img.freepik.com/free-icon/upload_318-250684.jpg)`}
+      backgroundSize="cover"
+      backgroundPosition="center" >
+
+{/* file input */}
+    <Input
+     opacity={image ? 1 : 0}
+    border="none"
+        type="file"
+        onChange={(e) => setImage(e.target.files[0])}
+        height="100%"/>
+
+        </Box>
+
           <Checkbox
             onChange={() => {
               setFileProtected(!fileProtected);
             }}
           >
-            {" "}
-            Set Password{" "}
+            Set Password
           </Checkbox>
           <Input
             value={password}
@@ -118,6 +143,8 @@ export default function UploadFiles() {
 <Text> {message} </Text>
 
         </Box>
+      
+
       </Flex>
     </>
   );

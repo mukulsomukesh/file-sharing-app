@@ -12,12 +12,12 @@ const signUp = (name, email, password) => (dispatch) => {
       password,
     })
     .then((res) => {
-      console.log(res);
+      // console.log(res);
       dispatch({ type: types.USER_SIGNUP_SUCCESS });
       
     })
     .catch((err) => {
-      console.log(err);
+      // console.log(err);
       dispatch({ type: types.USER_SIGNUP_FAILURE, payload:"Somthing Went Wront" });
     });
 };
@@ -32,7 +32,7 @@ const login =  (email, password) => (dispatch) => {
       password,
     })
     .then((res) => {
-      console.log(res)
+      // console.log(res)
       dispatch({ type: types.USER_LOGIN_SUCCESS, payload: res });
       localStorage.setItem("jwt", res.data.token)
     })

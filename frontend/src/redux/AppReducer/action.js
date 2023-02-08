@@ -5,7 +5,7 @@ import * as types from "./actionTypes";
 const uploadToServer =
   (name, fileType, password, isProtected, pic) => (dispatch) => {
     dispatch({ type: types.UPLOAD_FILE_PROCESS });
-
+console.log("uploading")
     axios
       .post(
         "https://file-sharing-w3xp.onrender.com/api/upload",
@@ -24,9 +24,11 @@ const uploadToServer =
       )
       .then((res) => {
         // if we get response
-        dispatch({ type: types.UPLOAD_FILE_SUCCESS });
+        // console.log(res.data.post._id)
+        dispatch({ type: types.UPLOAD_FILE_SUCCESS, payload:res.data.post._id });
       })
       .catch((err) => {
+        console.log(err)
         dispatch({ type: types.UPLOAD_FILE_FAILURE });
       });
   };
@@ -45,7 +47,6 @@ const uploadToServer =
       )
       .then((res) => {
         // if we get response
-        console.log(res);
         dispatch({ type: types.ALL_FILES_LOADING_SUCCESS, payload:res.data.posts});
       })
       .catch((err) => {
@@ -69,16 +70,13 @@ const uploadToServer =
     )
     .then((res) => {
       // if we get response
-      console.log(res);
+      // console.log(res);
       dispatch({ type: types.SINGLE_FILE_LOADING_SUCCESS, payload:res.data});
     })
     .catch((err) => {
       console.log(err);
       dispatch({ type: types.SINGLE_FILE_LOADING_FAILURE });
     });
-
-    console.log(typeof id)
-    console.log(id)
   }
 
 export { uploadToServer, getAllFiles, getSingleFile };
