@@ -12,6 +12,7 @@ import FileDetails from "../components/DisplayFiles/FileDetails";
 import { getAllFiles } from "../redux/AppReducer/action";
 import { useDispatch, useSelector } from "react-redux";
 import Loader from "../components/DisplayFiles/Loader";
+import Error from "../components/DisplayFiles/Error";
 
 export default function DisplayFiles() {
   const dispatch = useDispatch();
@@ -27,7 +28,12 @@ export default function DisplayFiles() {
   return (
     <>
 
+{/* loader Display when data is loading */}
 {isLoading?  <Loader /> : "" }
+
+{/* Error display when error come */}
+{isError?  <Error /> : "" }
+
 
       {/* grid */}
       <SimpleGrid minChildWidth="130px" spacing="2rem" p="2rem">
