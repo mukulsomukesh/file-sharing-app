@@ -58,6 +58,7 @@ export default function UploadFiles() {
       })
       .catch((err) => {
         console.log(err);
+        setProcess(false);
       });
   };
 

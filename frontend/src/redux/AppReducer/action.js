@@ -3,7 +3,7 @@ import * as types from "./actionTypes";
 
 // upload file function
 const uploadToServer = (name, fileType, password, isProtected, pic) => (dispatch) => {
-  dispatch({ type: types.UPLOAD_FILE_PROCESS });
+  dispatch({ type: types.UPLOAD_FILE_PROCESS});
 
 let ret;
 
@@ -17,11 +17,11 @@ axios.post('https://file-sharing-w3xp.onrender.com/api/upload',
 .then((res)=>{
   // if we get response
   console.log("res",res)
-  dispatch({ type: types.UPLOAD_FILE_SUCCESS, payload:"File Uploading Success!" });
+  dispatch({ type: types.UPLOAD_FILE_SUCCESS });
 })
 .catch((err)=>{
     console.log("uploading")
-    dispatch({ type: types.UPLOAD_FILE_FAILURE, payload:"File Uploading Failed"  });
+    dispatch({ type: types.UPLOAD_FILE_FAILURE});
 })
 
 

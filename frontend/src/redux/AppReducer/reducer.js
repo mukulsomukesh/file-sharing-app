@@ -26,7 +26,7 @@ export const reducer = (state = initialState, action) => {
         ...state,
         isLoading: false,
         allFiles: [],
-        message: payload,
+        message: "",
       };
     case types.ALL_FILES_LOADING_FAILURE:
       return {
@@ -34,7 +34,7 @@ export const reducer = (state = initialState, action) => {
         isLoading: false,
         isError: true,
         allFiles: [],
-        message: payload,
+        message: "",
       };
     case types.UPLOAD_FILE_PROCESS:
       return {
@@ -48,14 +48,14 @@ export const reducer = (state = initialState, action) => {
         ...state,
         isUploading:false,
         isError: false,
-        message: payload,
+        message: "File Upload Success!",
       };
     case types.UPLOAD_FILE_FAILURE:
       return {
         ...state,
         isUploading:false,
         isError: true,
-        message: payload,
+        message: "File Upload Fail. Please Try Again!",
       };
 
     default:
