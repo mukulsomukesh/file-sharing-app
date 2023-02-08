@@ -6,22 +6,33 @@ import {
   SimpleGrid,
   Text,
 } from "@chakra-ui/react";
-import React from "react";
+import React, { useEffect } from "react";
 import { BsFileEarmarkMedical, BsEyeFill } from "react-icons/bs";
 import ShareFile from "../components/DisplayFiles/ShareFile";
 import FileDetails from "../components/DisplayFiles/FileDetails";
+import { getAllFiles } from "../redux/AppReducer/action";
+import { useDispatch, useSelector } from "react-redux";
 
 export default function DisplayFiles() {
-  let arr = [1, 2, 3, 4, 5, 9, 9, 9];
+  const dispatch = useDispatch();
+  const isLoading = useSelector((state) => state.AppReducer.isLoading);
+  const isError = useSelector((state) => state.AppReducer.isError);
+  const allFiles = useSelector((state) => state.AppReducer.allFiles);
+
+  useEffect(() => {
+    dispatch(getAllFiles);
+  }, []);
+
 
   return (
     <>
 
-    {/* grid */}
+{isLoading? "Please Wait!": "" }
+
+      {/* grid */}
       <SimpleGrid minChildWidth="130px" spacing="2rem" p="2rem">
-        
         {/* map files */}
-        {arr.map((el) => (
+        {!isError && !isLoading && allFiles?.map((el) => (
           <Box
             overflow="hidden"
             borderRadius="1rem"
@@ -32,7 +43,6 @@ export default function DisplayFiles() {
             border="1px"
             borderColor="teal"
           >
-
             <BsFileEarmarkMedical size="100px" />
 
             <Flex
@@ -43,7 +53,6 @@ export default function DisplayFiles() {
               justifyContent="space-around"
               cursor={"pointer"}
             >
-
               {/* preview button */}
               <IconButton
                 h="fit-content"
@@ -52,7 +61,6 @@ export default function DisplayFiles() {
                 icon={<BsEyeFill size="20px" />}
               />
 
-
               {/* share file option */}
               <ShareFile />
 
@@ -60,9 +68,9 @@ export default function DisplayFiles() {
               <FileDetails />
             </Flex>
 
-{/* file name */}
+            {/* file name */}
             <Box bg="teal" p="0.5rem" color="white">
-              <Text lineHeight="1rem"> this is my file name </Text>
+              <Text lineHeight="1rem" m="0px" p="0px"> {el.name} . {el.fileType} </Text>
             </Box>
           </Box>
         ))}

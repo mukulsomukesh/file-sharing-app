@@ -25,7 +25,7 @@ export const reducer = (state = initialState, action) => {
       return {
         ...state,
         isLoading: false,
-        allFiles: [],
+        allFiles: payload,
         message: "",
       };
     case types.ALL_FILES_LOADING_FAILURE:
