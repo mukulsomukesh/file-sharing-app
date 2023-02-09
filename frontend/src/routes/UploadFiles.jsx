@@ -16,7 +16,6 @@ import { useNavigate } from "react-router-dom";
 export default function UploadFiles() {
 
   const dispatch = useDispatch();
-  const message = useSelector((state) => state.AppReducer.message)
   const [name, setName] = useState("");
   const [fileType, setFiletype] = useState("");
   const [password, setPassword] = useState("");
@@ -25,7 +24,7 @@ export default function UploadFiles() {
   const [fileProtected, setFileProtected] = useState(false);
   const [process, setProcess] = useState(false);
   const navigate = useNavigate()
-
+  const toast = useToast()
 
 
   useEffect(() => {
@@ -33,11 +32,17 @@ export default function UploadFiles() {
       let isProtected = fileProtected;
       let pic = url;
       dispatch(uploadToServer(name, fileType, password, isProtected, pic));
-      
-      setProcess(false);
-
       navigate("/UploadFileSuccess")
+
+      // toast message
+      let toastStatus = "success"
+      let message="File Successfully uploaded!"
+      toastMessage(toastStatus, message)
+
     }
+
+    setProcess(false);
+      
   }, [url]);
 
   const postDetails = async () => {
@@ -58,16 +63,34 @@ export default function UploadFiles() {
     )
       .then((res) => res.json())
       .then((data) => {
-        console.log(data);
         setUrl(data.url);
         setName(data.original_filename);
         setFiletype(data.original_extension);
       })
       .catch((err) => {
-        console.log(err);
+        
         setProcess(false);
+
+        // toast message
+        let toastStatus = "error"
+        let message="File Uploading Failed!"
+        toastMessage(toastStatus, message)
+      
       });
   };
+
+  function toastMessage(toastStatus, message){
+    return(
+        toast({
+          position:"top-right",
+          title: message,
+          status: toastStatus,
+          duration: 9000,
+          isClosable: true,
+        })
+    )
+  }
+
 
   return (
     <>
@@ -142,8 +165,6 @@ export default function UploadFiles() {
           >
             Upload File{" "}
           </Button>
-
-<Text> {message} </Text>
 
         </Box>
       
