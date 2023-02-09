@@ -1,12 +1,48 @@
-import {HStack, Box, Flex, Text, Heading, Button } from '@chakra-ui/react'
-import React from 'react'
+import {HStack, Box, Flex, Text, Heading, Button, Input } from '@chakra-ui/react'
+import React, { useEffect } from 'react'
 import { useState } from 'react';
 import { ImDownload } from "react-icons/im";
+import { useDispatch, useSelector } from 'react-redux';
+import { useParams } from 'react-router-dom';
+import {getSingleFile} from "../redux/AppReducer/action"
+import download from 'downloadjs';
 
 export default function DownloadFile() {
 
     const [isProtected, setIsProtected] = useState(true)
+    const param = useParams()
+    const dispatch = useDispatch()
+    const [downloadStatus, setDownloadStatus] = useState(false);
+    const singleFile = useSelector((state) => state.AppReducer.singleFile)
+    const isLoading = useSelector((state) => state.AppReducer.isLoading)
+    const isError = useSelector((state) => state.AppReducer.isError)
+    const [filePassword, setFilePassword] = useState("")
 
+    useEffect(()=>{
+      dispatch(getSingleFile(param.id))
+    },[])
+
+    // download file function
+    const handleDownload = () => {
+    
+      if( (!singleFile.isProtected) || (singleFile.isProtected && singleFile.password==filePassword) ){
+        setDownloadStatus(true)
+        // extract file extension from url
+        const fileExtension = singleFile.fileData.split('.').pop();
+        const fileName = singleFile.name+ "."+ fileExtension
+      
+        // download file
+        download(singleFile.fileData , fileName);
+        
+        setDownloadStatus(false);
+
+        console.log("downloaded with password")
+      }
+      else{
+        console.log("wrong password")
+      }
+
+    };
 
   return (
 <>
@@ -16,8 +52,16 @@ export default function DownloadFile() {
 {/* heading */}
 <Heading> Download File </Heading>
 
+{/* loading */}
+{isLoading? "Please Wait!": ""}
+
+{/* error message */}
+{isError? "Please Wait!": ""}
+
 {/* box that contain file name & download button */}
-<Box w="20rem" p="1rem" display="flex" flexDirection="column" gap="1rem" justify="center" align="center" border="1px" borderRadius="1rem" borderColor="teal" boxShadow="dark-lg" >
+
+{!isLoading && !isError && singleFile?
+  <Box w="20rem" p="1rem" display="flex" flexDirection="column" gap="1rem" justify="center" align="center" border="1px" borderRadius="1rem" borderColor="teal" boxShadow="dark-lg" >
 
 {/* download icon */}
 <Box>
@@ -25,18 +69,26 @@ export default function DownloadFile() {
 </Box>
 
 {/* file name */}
-<HStack m="auto"> <Text as="b"> Name: </Text>  <Text> This is file name </Text></HStack>
+<HStack m="auto"> <Text as="b"> Name: </Text>  <Text> {singleFile.name} . {singleFile.fileType} </Text></HStack>
 
 {/* file size */}
 <HStack m="auto"> <Text as="b"> Size: </Text>  <Text> 1 MB </Text></HStack>
 
+{/* password input */}
+{singleFile.isProtected?
+<Input value={filePassword} onChange={(e)=>{ setFilePassword(e.target.value) }} placeholder='Enter Password' />
+:""}
+
 {/* download button */}
-<Button colorScheme="teal" variant="solid" disabled > Download </Button>
+<Button colorScheme="teal" variant="solid" onClick={handleDownload} disabled={downloadStatus} > 
+{downloadStatus ? 'Downloading...' : 'Download'}
+ </Button>
 
 </Box>
+:""
+}
 
 </Flex>
-
 </>
   )
 }

@@ -7,11 +7,7 @@ function App() {
 
     <>
 
-<Box
-bg="#f4f5f7"
-  w='100vw'
-  h='100vh'
-  minH="fit-content">
+<Box bg="#f4f5f7" h="100%" w="100%" fontFamily="sans-serif" >
 
 {/* navbar */}
 <Navbar />
