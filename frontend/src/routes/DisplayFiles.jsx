@@ -26,7 +26,7 @@ export default function DisplayFiles() {
     dispatch(getAllFiles);
   }, []);
 
-  console.log(allFiles)
+  // console.log(allFiles)
 
   return (
     <>

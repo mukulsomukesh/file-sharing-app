@@ -63,9 +63,10 @@ export default function UploadFiles() {
     )
       .then((res) => res.json())
       .then((data) => {
-        setUrl(data.url);
+        // console.log(data)
         setName(data.original_filename);
-        setFiletype(data.original_extension);
+        setFiletype(data.format);
+        setUrl(data.url);
       })
       .catch((err) => {
         
