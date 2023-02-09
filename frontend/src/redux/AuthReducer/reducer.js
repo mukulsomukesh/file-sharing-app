@@ -40,15 +40,14 @@ export const reducer = (state = initialState, action) => {
         ...state,
         isSignup: false,
         isProcessing: true,
-        signupMessage: "",
-        loginMessage:""
+        loginMessage:"Login Seccess!"
       };
     case types.USER_SIGNUP_SUCCESS:
       return {
         ...state,
         isSignup: true,
         isProcessing: false,
-        signupMessage: "",
+        signupMessage: "User SignUp Success!",
         loginMessage:""
       };
     case types.USER_SIGNUP_FAILURE:

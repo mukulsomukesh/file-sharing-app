@@ -1,4 +1,4 @@
-import {HStack, Box, Flex, Text, Heading, Button, Input } from '@chakra-ui/react'
+import {HStack, Box, Flex, Text, Heading, Button, Input, useToast } from '@chakra-ui/react'
 import React, { useEffect } from 'react'
 import { useState } from 'react';
 import { ImDownload } from "react-icons/im";
@@ -17,6 +17,7 @@ export default function DownloadFile() {
     const isLoading = useSelector((state) => state.AppReducer.isLoading)
     const isError = useSelector((state) => state.AppReducer.isError)
     const [filePassword, setFilePassword] = useState("")
+    const toast = useToast()
 
     useEffect(()=>{
       dispatch(getSingleFile(param.id))
@@ -25,6 +26,9 @@ export default function DownloadFile() {
     // download file function
     const handleDownload = () => {
     
+      let message;
+      let status;
+
       if( (!singleFile.isProtected) || (singleFile.isProtected && singleFile.password==filePassword) ){
         setDownloadStatus(true)
         // extract file extension from url
@@ -36,12 +40,23 @@ export default function DownloadFile() {
         
         setDownloadStatus(false);
 
-        console.log("downloaded with password")
+        status = "success"
+       message = "downloaded with password"
       }
       else{
-        console.log("wrong password")
+        status = "error"
+       message = "Somthing Went Wront!"
       }
 
+      return(
+        toast({
+          position:'top-right',
+          title: message,
+          status: status,
+          duration: 6000,
+          isClosable: true,
+        })
+      )
     };
 
   return (

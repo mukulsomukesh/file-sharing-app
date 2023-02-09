@@ -1,5 +1,6 @@
 import {
 Text,
+useToast ,
   Box,
   Button,
   FormControl,
@@ -8,7 +9,7 @@ Text,
   InputGroup,
   InputRightElement,
 } from "@chakra-ui/react";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { signUp } from "../../redux/AuthReducer/action";
 
@@ -19,12 +20,51 @@ export default function Signup() {
   const [userInput, setUserInput] = useState([{ name:"", email:"", password:"" }])
   const isProcessing = useSelector((state) => state.AuthReducer.isProcessing)
   const signupMessage = useSelector((state) => state.AuthReducer.signupMessage)
+  const toast = useToast()
 
   function handelInputSubmit(){
+    // dispatch signUp() function
     
     dispatch(signUp(userInput.name, userInput.email, userInput.password))
 
+// set Difault values to inputs
+    setUserInput({ name:"", email:"", password:"" })
   }
+
+  function toastMessage(){
+
+    let status;
+    let description;
+
+    if(signupMessage=="User already exists!"){
+      status="warning"
+      description="Try With Different Email."
+      }
+    if(signupMessage=="User SignUp Success!"){
+        status="success"
+        description="Please Login To Continue."
+    }
+
+
+return(
+  toast({
+    position:"top-right",
+    title: signupMessage,
+    description: description,
+    status: status,
+    duration: 9000,
+    isClosable: true,
+  })
+)
+}
+
+
+useEffect(()=>{
+    // toast message
+if(signupMessage){
+  toastMessage()
+}
+},[signupMessage])
 
   return (
     <>
@@ -67,7 +107,7 @@ export default function Signup() {
     Signup
 </Button>
 
-<Text as="b" color="red">{signupMessage}</Text>
+{/* <Text as="b" color="red">{signupMessage}</Text> */}
 
 
       </Box>

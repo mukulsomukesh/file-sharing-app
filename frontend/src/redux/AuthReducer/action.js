@@ -4,6 +4,8 @@ import * as types from "./actionTypes";
 // signup function
 const signUp = (name, email, password) => (dispatch) => {
   dispatch({ type: types.USER_SIGNUP_PROCESS });
+  
+
   axios
     .post("https://file-sharing-w3xp.onrender.com/user", {
 
@@ -12,12 +14,17 @@ const signUp = (name, email, password) => (dispatch) => {
       password,
     })
     .then((res) => {
-      // console.log(res);
-      dispatch({ type: types.USER_SIGNUP_SUCCESS });
       
+      console.log(res);
+      if(res.data.msg=="User already exists!"){
+        dispatch({ type: types.USER_SIGNUP_FAILURE, payload:"User Already Exist!" });
+      }
+      else{
+        dispatch({ type: types.USER_SIGNUP_SUCCESS });
+      }
     })
     .catch((err) => {
-      // console.log(err);
+      console.log(err);
       dispatch({ type: types.USER_SIGNUP_FAILURE, payload:"Somthing Went Wront" });
     });
 };

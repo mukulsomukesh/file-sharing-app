@@ -1,4 +1,4 @@
-import { Center, Heading, Input, InputGroup, InputRightElement } from "@chakra-ui/react";
+import { Center, Heading, Input, InputGroup, InputRightElement, useToast } from "@chakra-ui/react";
 import { RiFileCopyFill } from "react-icons/ri";
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
@@ -7,6 +7,7 @@ import { useDispatch, useSelector } from "react-redux";
 export default function UploadFileSuccess() {
   const [url, setUrl] = useState("");
   const uploadedFileId = useSelector((state) => state.AppReducer.uploadedFileId)
+  const toast = useToast()
 
   useEffect(() => {
     let location = window.location.href;
@@ -20,6 +21,16 @@ export default function UploadFileSuccess() {
   // copy to clipboard
   const handleCopy = () => {
     navigator.clipboard.writeText(url);
+
+    return(
+      toast({
+        position:"top-right",
+        title: "Url Copy To ClipBoard!",
+        status: "success",
+        duration: 9000,
+        isClosable: true,
+      })
+    )
   };
 
   return (

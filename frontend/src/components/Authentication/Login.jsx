@@ -1,4 +1,5 @@
 import {
+  useToast,
     Box,
     Button,
     FormControl,
@@ -24,18 +25,45 @@ import { Navigate, useNavigate } from 'react-router-dom'
     const isProcessing = useSelector((state) => state.AuthReducer.isProcessing)
     const isLogin = useSelector((store) => store.AuthReducer.isLogin)
     const navigate = useNavigate()
+    const toast = useToast()
     
   function handelInputSubmit(){
     dispatch(login(userInput.email, userInput.password))
   }
 
   useEffect(()=>{
-    if(isLogin){
-      navigate("/UploadFiles")
-      // <Navigate to="/UploadFiles"> </Navigate>
-          }
-  },[isLogin])
+    let status;
 
+    if(isLogin){
+    status="success"
+      toastMessage(status)
+      navigate("/UploadFiles")
+    }
+    if(loginMessage.length>2){
+      status="error"
+toastMessage(status)
+    }
+
+    
+
+  },[isLogin, loginMessage])
+
+
+  // toast message
+  function toastMessage(status){
+
+return(
+  toast({
+    position:"top-right",
+    title: loginMessage || "Login Success!",
+    status: status,
+    duration: 9000,
+    isClosable: true,
+  })
+
+  )
+
+}
   
     return (
       <>

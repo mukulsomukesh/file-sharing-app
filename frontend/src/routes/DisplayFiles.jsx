@@ -1,5 +1,6 @@
 import {
   Box,
+  Center,
   Flex,
   IconButton,
   SimpleGrid,
@@ -13,6 +14,7 @@ import { getAllFiles } from "../redux/AppReducer/action";
 import { useDispatch, useSelector } from "react-redux";
 import Loader from "../components/DisplayFiles/Loader";
 import Error from "../components/DisplayFiles/Error";
+import { Link } from 'react-router-dom'
 
 export default function DisplayFiles() {
   const dispatch = useDispatch();
@@ -24,6 +26,7 @@ export default function DisplayFiles() {
     dispatch(getAllFiles);
   }, []);
 
+  console.log(allFiles)
 
   return (
     <>
@@ -49,7 +52,13 @@ export default function DisplayFiles() {
             border="1px"
             borderColor="teal"
           >
+
+
+<Link to= {`/Download/${el._id}`}>
+            {/* <Center cursor="pointer" onClick={()=>{ alert("ok") }}> */}
             <BsFileEarmarkMedical size="100px" />
+            {/* </Center> */}
+</Link>
 
             <Flex
               mb="0.5rem"
@@ -68,10 +77,11 @@ export default function DisplayFiles() {
               />
 
               {/* share file option */}
-              <ShareFile />
+              <ShareFile el={el} />
 
               {/* file details */}
               <FileDetails />
+
             </Flex>
 
             {/* file name */}
