@@ -82,6 +82,7 @@ export default function UploadFiles() {
 
 {/*   this input box contain all the inputs */}
         <Box
+        bg="white"
           w="20rem"
           display="flex"
           flexDirection="column"
@@ -95,17 +96,19 @@ export default function UploadFiles() {
 
 {/* this box contain only file input */}
             <Box height="200px"
-                    border="1px"
+                    border="2px"
                     borderColor="teal"
-                    borderStyle="dotted"
+                    borderStyle="dashed"
                     borderRadius="1rem"
                     overflow="hidden"
-      backgroundImage={`url(https://img.freepik.com/free-icon/upload_318-250684.jpg)`}
-      backgroundSize="cover"
+      backgroundImage={`url(http://res.cloudinary.com/dmzzzl5jj/image/upload/v1675932758/ur2hvbmmuiigrnpffhxs.png)`}
+      backgroundSize="170px"
+      backgroundRepeat="no-repeat"
       backgroundPosition="center" >
 
 {/* file input */}
     <Input
+
      opacity={image ? 1 : 0}
     border="none"
         type="file"
