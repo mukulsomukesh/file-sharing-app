@@ -1,11 +1,13 @@
-import { Button, IconButton, Input, InputGroup, InputRightElement, Popover, PopoverArrow, PopoverBody, PopoverCloseButton, PopoverContent, PopoverHeader, PopoverTrigger } from "@chakra-ui/react";
+import { Button, IconButton, Input, InputGroup, InputRightElement, Popover, PopoverArrow, PopoverBody, PopoverCloseButton, PopoverContent, PopoverHeader, PopoverTrigger, useToast } from "@chakra-ui/react";
 import { useEffect, useState } from "react";
 import { GiHamburgerMenu, GiShare } from "react-icons/gi";
 import { RiFileCopyFill } from "react-icons/ri";
 
+
 export default function ShareFile({el}) {
   
   const [url, setUrl] = useState("");
+  const toast = useToast()
 
   useEffect(() => {
     let location = window.location.href;
@@ -17,6 +19,16 @@ export default function ShareFile({el}) {
   // copy to clipboard
   const handleCopy = () => {
     navigator.clipboard.writeText(url);
+
+    return(
+      toast({
+        position:"top-right",
+        title: "Url Copy To ClipBoard!",
+        status: "success",
+        duration: 9000,
+        isClosable: true,
+      })
+    )
   };
 
 
