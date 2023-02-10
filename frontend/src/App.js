@@ -7,7 +7,7 @@ function App() {
 
     <>
 
-<Box bg="#f4f5f7" h="100%" w="100%" fontFamily="sans-serif" >
+<Box bg="#f4f5f7" h="100vh" w="100%" fontFamily="sans-serif" >
 
 {/* navbar */}
 <Navbar />

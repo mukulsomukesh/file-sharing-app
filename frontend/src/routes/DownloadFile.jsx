@@ -59,10 +59,11 @@ export default function DownloadFile() {
       )
     };
 
+
   return (
 <>
 {/* flex container */}
-<Flex h="80vh"align="center" justify="center" flexDirection="column" gap="1rem" >
+<Flex h="90vh" align="center" justify="center" flexDirection="column" gap="1rem" >
 
 {/* heading */}
 <Heading> Download File </Heading>
