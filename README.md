@@ -1,11 +1,9 @@
 # File Sharing App
 
-<a href="https://splendid-cobbler-e79ae2.netlify.app" target="blank">
+<a href="https://file-sharing-application.netlify.app/" target="blank">
         <img src="https://img.shields.io/static/v1?style=for-the-badge&message=Want to see live preview »&color=1BB91F&logo=Bluefly&logoColor=FFFFFF&label=" alt="Bluefly-Clone" />
     </a>
 <p> The File Sharing App allow user to Signup/Login & upload files from your device and protect them with a password. Sharing files is as simple as sharing a link, allowing others to access and download the file with ease.
-
-
 
  </p>
 
@@ -19,6 +17,11 @@
 <li> Updating password for files </li> 
 <li> Deleting files </li> 
 </ul>
+
+</br>
+<h2> Home Screen </h2>
+<img src="https://drive.google.com/uc?export=view&id=17Yoo_GXjch7NLYZ9bSssssMI7yftnOIx" style="width: 100%; height: auto" title="home screen." />
+</br>
 
 <h1> Tech Stack </h1>
 <p>
