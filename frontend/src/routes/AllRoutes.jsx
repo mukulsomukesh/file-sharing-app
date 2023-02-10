@@ -1,6 +1,7 @@
 import React from "react";
 import { Route, Routes } from "react-router-dom";
 import PrivateRoutes from "../components/AllRoutes/PrivateRoutes";
+import Error from "../components/DisplayFiles/Error";
 import Authentication from "./Authentication";
 import DisplayFiles from "./DisplayFiles";
 import DownloadFile from "./DownloadFile";
@@ -36,7 +37,7 @@ export default function AllRoutes() {
 
        <Route path="/UploadFileSuccess" element={ <UploadFileSuccess /> }></Route>
 
-       <Route path="*" element={<h1> Nothing over here </h1>}></Route>
+       <Route path="*" element={<Error /> }></Route>
 
       </Routes>
     </>

@@ -17,7 +17,6 @@ const initialState = {
 
 export const reducer = (state = initialState, action) => {
   const { type, payload } = action;
-
   switch (type) {
     case types.SINGLE_FILE_LOADING:
       return {
