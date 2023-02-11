@@ -19,9 +19,20 @@
 </ul>
 
 </br>
-<h2> Home Screen </h2>
-<img src="https://drive.google.com/uc?export=view&id=17Yoo_GXjch7NLYZ9bSssssMI7yftnOIx" style="width: 100%; height: auto" title="home screen." />
-</br>
+<h2> Upload File Screen </h2>
+<img src="https://drive.google.com/uc?export=view&id=17Yoo_GXjch7NLYZ9bSssssMI7yftnOIx" style="width: 100%; height: auto" title="Upload File." />
+
+<h2> All Files Screen </h2>
+<img src="https://drive.google.com/uc?export=view&id=1I35KmCKwctVTTfdUMNG4gzuvjYa83EMr" style="width: 100%; height: auto" title="All Files." />
+
+<h2> Download File Screen </h2>
+<img src="https://drive.google.com/uc?export=view&id=1KODl2qTKxAhWXulLDNvl6fs0q29bx0uM" style="width: 100%; height: auto" title="Download." />
+
+<h2> Signup Screen </h2>
+<img src="https://drive.google.com/uc?export=view&id=1r-w0hwntCze9mKFkY4Yux1f-2bSaYo1j" style="width: 100%; height: auto" title="Signup." />
+
+<h2> Login Screen </h2>
+<img src="https://drive.google.com/uc?export=view&id=173sg3Z4MV5BqpBmMFQi3lzzpMWpjBM2r" style="width: 100%; height: auto" title="Login." />
 
 <h1> Tech Stack </h1>
 <p>
