@@ -5,6 +5,7 @@ import * as types from "./actionTypes";
 const signUp = (name, email, password)  => async (dispatch) => {
   dispatch({ type: types.USER_SIGNUP_PROCESS });
 
+
   try {
     const res = await axios.post("https://file-sharing-w3xp.onrender.com/user", {
       name,
@@ -20,7 +21,7 @@ const signUp = (name, email, password)  => async (dispatch) => {
     }
   } catch (err) {
     console.error(err);
-    dispatch({ type: types.USER_SIGNUP_FAILURE, payload:"Somthing Went Wront" });
+    dispatch({ type: types.USER_SIGNUP_FAILURE, payload:"Somthing Went Wrong!" });
   }
 };
 

@@ -24,25 +24,27 @@ export default function Signup() {
 
   function handelInputSubmit(){
     // dispatch signUp() function
-    
-    dispatch(signUp(userInput.name, userInput.email, userInput.password))
+    if(userInput.name && userInput.email && userInput.password ){
+      dispatch(signUp(userInput.name, userInput.email, userInput.password))
+      
+      // set Difault values to inputs
+          setUserInput({ name:"", email:"", password:"" })
+    }
+    else{
+    toastMessage("Fill All The Fields")
+    }
 
-// set Difault values to inputs
-    setUserInput({ name:"", email:"", password:"" })
   }
 
-  function toastMessage(){
+  function toastMessage(signupMessage){
 
-    let status;
-    let description;
+    var status="error";
 
-    if(signupMessage=="User already exists!"){
+    if(signupMessage=="User Already Exist!"){
       status="warning"
-      description="Try With Different Email."
       }
     if(signupMessage=="User SignUp Success!"){
         status="success"
-        description="Please Login To Continue."
     }
 
 
@@ -50,7 +52,6 @@ return(
   toast({
     position:"top-right",
     title: signupMessage,
-    description: description,
     status: status,
     duration: 9000,
     isClosable: true,
@@ -62,7 +63,7 @@ return(
 useEffect(()=>{
     // toast message
 if(signupMessage){
-  toastMessage()
+  toastMessage(signupMessage)
 }
 },[signupMessage])
 

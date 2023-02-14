@@ -36,7 +36,7 @@ export default function Navbar() {
         >
 
           {/* user Name text  */}
-          <Text fontSize={"2xl"} as="b"> Mukul Jatav </Text>
+          <Text fontSize={"2xl"} as="b"> File Sharing App </Text>
 
           {/* hamburger & close button */}
           <IconButton
