@@ -15,6 +15,7 @@ import { useDispatch, useSelector } from "react-redux";
 import Loader from "../components/DisplayFiles/Loader";
 import Error from "../components/DisplayFiles/Error";
 import { Link } from 'react-router-dom'
+import Preview from "../components/DisplayFiles/Preview";
 
 export default function DisplayFiles() {
   const dispatch = useDispatch();
@@ -69,12 +70,7 @@ export default function DisplayFiles() {
               cursor={"pointer"}
             >
               {/* preview button */}
-              <IconButton
-                h="fit-content"
-                w="fit-content"
-                _hover={{ background: "transparent" }}
-                icon={<BsEyeFill size="20px" />}
-              />
+              <Preview fileData={el.fileData} />
 
               {/* share file option */}
               <ShareFile el={el} />
