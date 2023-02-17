@@ -2,10 +2,12 @@ const mongoose = require('mongoose')
 require('dotenv').config()
 
 const connectDB = async() => {
+    
     try {
-        const conn = await mongoose.connect("mongodb+srv://filesharingapp:filesharingapp@cluster0.wkfjaur.mongodb.net/?retryWrites=true&w=majority",{
+        const conn = await mongoose.connect(process.env.MONGO_URL,{
             useNewUrlParser:true,
-            useUnifiedTopology:true
+            useUnifiedTopology:true,
+            
         })
         console.log(`Mongoose Connected : ${conn.connection.host}`)
     } catch (error) {
