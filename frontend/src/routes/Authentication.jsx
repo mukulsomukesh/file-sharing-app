@@ -6,11 +6,20 @@ import {
   TabPanels,
   Tabs,
 } from "@chakra-ui/react";
-import React from "react";
+import React, { useEffect } from "react";
+import { useDispatch } from "react-redux";
 import Login from "../components/Authentication/Login";
 import Signup from "../components/Authentication/Signup";
+import {checkAuthentication} from "../redux/AuthReducer/action"
 
 export default function Authentication() {
+
+  const dispatch = useDispatch()
+
+  useEffect(()=>{
+    dispatch(checkAuthentication)
+  },[])
+
   return (
     <>
       {/* flex  */}

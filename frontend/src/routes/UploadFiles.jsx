@@ -3,9 +3,7 @@ import {
   Button,
   Checkbox,
   Flex,
-  Heading,
   Input,
-  Text,
   useToast,
 } from "@chakra-ui/react";
 import React, { useEffect, useState } from "react";
@@ -96,13 +94,13 @@ export default function UploadFiles() {
   return (
     <>
       <Flex
-        h="91vh"
+        h="88vh"
         align="center"
         justify="center"
         flexDirection="column"
         gap="1rem"
       >
-        <Heading> Upload File </Heading>
+        {/* <Heading> Upload File </Heading> */}
 
 {/*   this input box contain all the inputs */}
         <Box

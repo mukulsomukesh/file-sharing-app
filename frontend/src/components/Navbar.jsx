@@ -11,6 +11,9 @@ import {
 import { RxHamburgerMenu } from "react-icons/rx";
 import { GrFormClose } from "react-icons/gr";
 import { Link, useLocation } from "react-router-dom";
+import { useSelector } from "react-redux";
+import { AiOutlinePoweroff } from 'react-icons/ai';
+
 
 const Links = [
   { name: "All Files", path: "/" },
@@ -18,8 +21,19 @@ const Links = [
 ];
 
 export default function Navbar() {
+ 
+  const isLogin = useSelector((store) => store.AuthReducer.isLogin)
   const { isOpen, onOpen, onClose } = useDisclosure();
   const location = useLocation();
+
+  function handelLogout(){
+
+    // remove token from local storage
+    localStorage.removeItem("jwt")
+
+    // reload page
+    window.location.reload(true)
+  }
 
   return (
     <>
@@ -35,8 +49,20 @@ export default function Navbar() {
           justifyContent={"space-between"}
         >
 
-          {/* user Name text  */}
-          <Text fontSize={"2xl"} as="b"> File Sharing App </Text>
+          {/* Text & Logout   */}
+          {!isLogin? 
+            <Text fontSize={"2xl"} as="b"> File Sharing App </Text>:
+
+            // logout button
+            <Button
+            leftIcon={<AiOutlinePoweroff />}
+            variant="outline"
+            colorScheme="teal"
+            onClick={()=>{ handelLogout() }}>
+            Logout
+          </Button>
+
+             }
 
           {/* hamburger & close button */}
           <IconButton

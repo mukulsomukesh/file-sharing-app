@@ -46,4 +46,13 @@ const login =  (email, password)  => async (dispatch) => {
   }
 };
 
-export { signUp, login };
+
+// check if user already login
+const checkAuthentication =  async (dispatch) => {
+  const token = localStorage.getItem("jwt")
+  if(token){
+    dispatch({ type: types.USER_LOGIN_SUCCESS, payload: "" });
+  }
+}
+
+export { signUp, login, checkAuthentication };
