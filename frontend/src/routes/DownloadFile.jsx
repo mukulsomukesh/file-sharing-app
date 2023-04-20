@@ -66,7 +66,7 @@ export default function DownloadFile() {
 <Flex h="90vh" align="center" justify="center" flexDirection="column" gap="1rem" >
 
 {/* heading */}
-<Heading> Download File </Heading>
+{/* <Heading> Download File </Heading> */}
 
 {/* loading */}
 {isLoading? "Please Wait!": ""}

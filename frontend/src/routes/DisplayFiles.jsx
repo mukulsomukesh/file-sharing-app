@@ -44,10 +44,12 @@ export default function DisplayFiles() {
         {/* map files */}
         {!isError && !isLoading && allFiles?.map((el) => (
           <Box
+          m="auto"
             overflow="hidden"
             borderRadius="1rem"
             boxShadow="2xl"
             height="fit-content"
+            maxW={"200px"}
             pt="1rem"
             align="center"
             border="1px"

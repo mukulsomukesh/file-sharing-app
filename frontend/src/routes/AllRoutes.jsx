@@ -25,9 +25,7 @@ export default function AllRoutes() {
         <Route
           path="/UploadFiles"
           element={
-            <PrivateRoutes>
               <UploadFiles />
-            </PrivateRoutes>
           }
         ></Route>
        
