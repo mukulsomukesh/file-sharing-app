@@ -16,8 +16,8 @@ import { AiOutlinePoweroff } from 'react-icons/ai';
 
 
 const Links = [
-  { name: "All Files", path: "/" },
-  { name: "Upload File", path: "/UploadFiles" },
+  {id:0, name: "All Files", path: "/" },
+  {id:1, name: "Upload File", path: "/UploadFiles" },
 ];
 
 export default function Navbar() {
@@ -29,7 +29,7 @@ export default function Navbar() {
   function handelLogout(){
 
     // remove token from local storage
-    localStorage.removeItem("jwt")
+    localStorage.removeItem("file-sharing-application-jwt")
 
     // reload page
     window.location.reload(true)
@@ -76,7 +76,7 @@ export default function Navbar() {
 
             {/* map links */}
             {Links.map((el) => (
-              <Link to={el.path}>
+              <Link to={el.path} key={el.id} >
                 <Button
                   variant={location.pathname === el.path ? "solid" : "outline"}
                   colorScheme="teal">
@@ -94,7 +94,7 @@ export default function Navbar() {
             
             {/* map links */}
               {Links.map((el) => (
-                <Link to={el.path}>
+                <Link to={el.path} key={el.id}>
                   <Button
                     variant={location.pathname === el.path ? "outline" : "solid"}
                     colorScheme="teal">

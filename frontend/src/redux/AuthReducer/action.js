@@ -36,7 +36,7 @@ const login =  (email, password)  => async (dispatch) => {
     });
     
     dispatch({ type: types.USER_LOGIN_SUCCESS, payload: res });
-    localStorage.setItem("jwt", res.data.token)
+    localStorage.setItem("file-sharing-application-jwt", res.data.token)
   } catch (err) {
     console.error(err);
     dispatch({
@@ -49,7 +49,7 @@ const login =  (email, password)  => async (dispatch) => {
 
 // check if user already login
 const checkAuthentication =  async (dispatch) => {
-  const token = localStorage.getItem("jwt")
+  const token = localStorage.getItem("file-sharing-application-jwt")
   if(token){
     dispatch({ type: types.USER_LOGIN_SUCCESS, payload: "" });
   }

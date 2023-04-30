@@ -2,7 +2,7 @@ import {
   Box,
   Center,
   Flex,
-  IconButton,
+  Heading,
   SimpleGrid,
   Text,
 } from "@chakra-ui/react";
@@ -38,6 +38,8 @@ export default function DisplayFiles() {
 {/* Error display when error come */}
 {isError?  <Error /> : "" }
 
+{/* no file is uploaded yed */}
+{ allFiles.length===0? <Center h="85%"> <Heading as="h2" size="lg" > You Have't Uploaded Any Files Yet. </Heading> </Center>: "" }
 
       {/* grid */}
       <SimpleGrid minChildWidth="130px" spacing="2rem" p="2rem">

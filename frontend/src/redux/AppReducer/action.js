@@ -17,7 +17,7 @@ const uploadToServer = (name, fileType, password, isProtected, pic) => async (di
       },
       {
         headers: {
-          Authorization: "Bearer " + localStorage.getItem("jwt"),
+          Authorization: "Bearer " + localStorage.getItem("file-sharing-application-jwt"),
         },
       }
     );
@@ -38,7 +38,7 @@ const getAllFiles = async (dispatch) => {
       "https://file-sharing-w3xp.onrender.com/api/get",
       {
         headers: {
-          Authorization: "Bearer " + localStorage.getItem("jwt"),
+          Authorization: "Bearer " + localStorage.getItem("file-sharing-application-jwt"),
         },
       }
     );
@@ -59,7 +59,7 @@ const getSingleFile = (id) => async (dispatch) => {
       `https://file-sharing-w3xp.onrender.com/api/get/${id}`,
       {
         headers: {
-          Authorization: "Bearer " + localStorage.getItem("jwt"),
+          Authorization: "Bearer " + localStorage.getItem("file-sharing-application-jwt"),
         },
       }
     );

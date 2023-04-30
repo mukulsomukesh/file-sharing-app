@@ -18,7 +18,6 @@ export default function DownloadFile() {
     const isError = useSelector((state) => state.AppReducer.isError)
     const [filePassword, setFilePassword] = useState("")
     const toast = useToast()
-
     useEffect(()=>{
       dispatch(getSingleFile(param.id))
     },[])

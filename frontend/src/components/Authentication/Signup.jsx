@@ -17,7 +17,7 @@ export default function Signup() {
 
   const dispatch = useDispatch()
   const [show, setShow] = useState(false);
-  const [userInput, setUserInput] = useState([{ name:"", email:"", password:"" }])
+  const [userInput, setUserInput] = useState({ name:"", email:"", password:"" })
   const isProcessing = useSelector((state) => state.AuthReducer.isProcessing)
   const signupMessage = useSelector((state) => state.AuthReducer.signupMessage)
   const toast = useToast()

@@ -35,15 +35,24 @@ export default function UploadFileSuccess() {
 
   return (
     <Center
-      w="100%"
-      h="90%"
-    >
 
+    display={"flex"}
+    flexDirection="column"
+    gap="2rem"
+    bg="transparent"
+      w="100%"
+      h="85%"
+    >
 {/* input for share url */}
       <InputGroup cursor="pointer" w="fit-content" bg="white">
-        <Input value={url} />
+        <Input value={url} w="40vw" minW={"250px"} />
         <InputRightElement children={<RiFileCopyFill color="teal" />} onClick={handleCopy} />
       </InputGroup>
+
+
+      <Heading as="h2" size="md" > Copy Above Link & Share With Your Friends. </Heading>
+
+
     </Center>
   );
 }

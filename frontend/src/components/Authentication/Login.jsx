@@ -20,7 +20,7 @@ import { Navigate, useNavigate } from 'react-router-dom'
 
 
     const [show, setShow] = useState(false);
-    const [userInput, setUserInput] = useState([{ email:"", password:"" }])
+    const [userInput, setUserInput] = useState({ email:"", password:"" })
     const loginMessage = useSelector((state) => state.AuthReducer.loginMessage)
     const isProcessing = useSelector((state) => state.AuthReducer.isProcessing)
     const isLogin = useSelector((store) => store.AuthReducer.isLogin)
@@ -33,12 +33,24 @@ import { Navigate, useNavigate } from 'react-router-dom'
 
   useEffect(()=>{
     let status;
+    const navigate_url=localStorage.getItem('file-sharing-app-redirect-url')
+ 
 
-    if(isLogin){
-    status="success"
+    
+    if(isLogin){      
+      status="success"
       toastMessage(status)
-      navigate("/UploadFiles")
+      localStorage.removeItem("file-sharing-app-redirect-url");
+      
+      if(navigate_url===null || navigate_url==="/"){
+        navigate("/UploadFiles")        
+      }
+      else{
+        navigate(navigate_url)
+
+      }
     }
+    
     if(loginMessage.length>2){
       status="error"
 toastMessage(status)
@@ -72,7 +84,7 @@ return(
         {/* email input */}
         <FormControl isRequired>
           <FormLabel>Email</FormLabel>
-          <Input placeholder="Enter Your Email!" value={userInput.email} onChange={(e)=> setUserInput((prev)=>( {...prev, email:e.target.value} ))} />
+          <Input placeholder="Enter Your Email!" value={userInput.email || ""} onChange={(e)=> setUserInput((prev)=>( {...prev, email:e.target.value} ))} />
         </FormControl>
 
         {/* password input */}
@@ -80,7 +92,7 @@ return(
           <FormLabel>Password</FormLabel>
           <InputGroup size="md">
             <Input
-            value={userInput.password} onChange={(e)=> setUserInput((prev)=>( {...prev, password:e.target.value} ))}
+            value={userInput.password || ""} onChange={(e)=> setUserInput((prev)=>( {...prev, password:e.target.value} ))}
               type={show ? "text" : "password"}
               placeholder="Enter password"/>
 

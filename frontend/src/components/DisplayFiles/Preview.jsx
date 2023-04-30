@@ -12,7 +12,7 @@ export default function Preview({fileData}) {
 <Modal isOpen={isOpen} onClose={onClose}>
   <ModalOverlay />
   <ModalContent>
-    <ModalHeader>File Details</ModalHeader>
+    <ModalHeader>Preview</ModalHeader>
     <ModalCloseButton />
     <ModalBody>
 
@@ -24,7 +24,7 @@ export default function Preview({fileData}) {
     </ModalBody>
 
     <ModalFooter>
-      <Button  mr={3} onClick={onClose}>
+      <Button variant="solid" colorScheme="teal" mr={3} onClick={onClose}>
         Close
       </Button>
     </ModalFooter>

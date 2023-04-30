@@ -8,7 +8,11 @@ export default function PrivateRoute({children}) {
 
     
     if(!isLogin){
-    return <Navigate to="/authentication"> </Navigate>
+ 
+        // store requested page url in local storage
+        localStorage.setItem("file-sharing-app-redirect-url", window.location.pathname);
+ 
+        return <Navigate to="/authentication"> </Navigate>
     }
     else{
         return children
