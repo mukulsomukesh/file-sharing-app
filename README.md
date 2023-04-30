@@ -1,11 +1,9 @@
 # File Sharing App
 
-<a href="https://splendid-cobbler-e79ae2.netlify.app" target="blank">
+<a href="https://file-sharing-application.netlify.app/" target="blank">
         <img src="https://img.shields.io/static/v1?style=for-the-badge&message=Want to see live preview »&color=1BB91F&logo=Bluefly&logoColor=FFFFFF&label=" alt="Bluefly-Clone" />
     </a>
 <p> The File Sharing App allow user to Signup/Login & upload files from your device and protect them with a password. Sharing files is as simple as sharing a link, allowing others to access and download the file with ease.
-
-
 
  </p>
 
@@ -19,6 +17,22 @@
 <li> Updating password for files </li> 
 <li> Deleting files </li> 
 </ul>
+
+</br>
+<h2> Upload File Screen </h2>
+<img src="https://drive.google.com/uc?export=view&id=17Yoo_GXjch7NLYZ9bSssssMI7yftnOIx" style="width: 100%; height: auto" title="Upload File." />
+
+<h2> All Files Screen </h2>
+<img src="https://drive.google.com/uc?export=view&id=1I35KmCKwctVTTfdUMNG4gzuvjYa83EMr" style="width: 100%; height: auto" title="All Files." />
+
+<h2> Download File Screen </h2>
+<img src="https://drive.google.com/uc?export=view&id=1KODl2qTKxAhWXulLDNvl6fs0q29bx0uM" style="width: 100%; height: auto" title="Download." />
+
+<h2> Signup Screen </h2>
+<img src="https://drive.google.com/uc?export=view&id=1r-w0hwntCze9mKFkY4Yux1f-2bSaYo1j" style="width: 100%; height: auto" title="Signup." />
+
+<h2> Login Screen </h2>
+<img src="https://drive.google.com/uc?export=view&id=173sg3Z4MV5BqpBmMFQi3lzzpMWpjBM2r" style="width: 100%; height: auto" title="Login." />
 
 <h1> Tech Stack </h1>
 <p>
