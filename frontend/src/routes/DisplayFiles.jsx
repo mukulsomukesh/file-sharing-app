@@ -46,12 +46,13 @@ export default function DisplayFiles() {
         {/* map files */}
         {!isError && !isLoading && allFiles?.map((el) => (
           <Box
+          key={el.id}
           m="auto"
             overflow="hidden"
             borderRadius="1rem"
             boxShadow="2xl"
             height="fit-content"
-            maxW={"200px"}
+            maxW={"130px"}
             pt="1rem"
             align="center"
             border="1px"

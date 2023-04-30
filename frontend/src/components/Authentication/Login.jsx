@@ -42,7 +42,7 @@ import { Navigate, useNavigate } from 'react-router-dom'
       toastMessage(status)
       localStorage.removeItem("file-sharing-app-redirect-url");
       
-      if(navigate_url===null || navigate_url==="/"){
+      if(navigate_url===null){
         navigate("/UploadFiles")        
       }
       else{

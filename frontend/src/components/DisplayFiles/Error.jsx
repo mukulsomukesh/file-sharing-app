@@ -6,9 +6,9 @@ export default function Error() {
   return (
     <>
       {/* center container */}
-      <Center h="90vh">
+      <Center h="85vh">
         {/* box contain  */}
-        <Box p="1rem" align="center" as="b"  border="1px" borderRadius="1rem" borderColor="teal" boxShadow="dark-lg">
+        <Box p="2rem" align="center" as="b"  border="1px" borderRadius="1rem" borderColor="teal" boxShadow="dark-lg">
 
         {/* icon */}
         <Box w="fit-content" m="auto"> 
@@ -18,9 +18,6 @@ export default function Error() {
           {/* text */}
           <Text mt="1rem">
             Somthing Went Wrong?
-          </Text>
-          <Text mt="1rem">
-            Please Try Again!
           </Text>
         </Box>
       </Center>
