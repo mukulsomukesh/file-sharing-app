@@ -7,7 +7,7 @@ const signUp = (name, email, password)  => async (dispatch) => {
 
 
   try {
-    const res = await axios.post("https://file-sharing-w3xp.onrender.com/user", {
+    const res = await axios.post("https://puzzled-rose-vulture.cyclic.app/user", {
       name,
       email,
       password
@@ -30,7 +30,7 @@ const login =  (email, password)  => async (dispatch) => {
   dispatch({ type: types.USER_LOGIN_PROCESS });
   
   try {
-    const res = await axios.post("https://file-sharing-w3xp.onrender.com/user/login", {
+    const res = await axios.post("https://puzzled-rose-vulture.cyclic.app/user/login", {
       email,
       password
     });

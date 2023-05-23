@@ -7,7 +7,7 @@ const uploadToServer = (name, fileType, password, isProtected, pic) => async (di
   console.log("uploading");
   try {
     const res = await axios.post(
-      "https://file-sharing-w3xp.onrender.com/api/upload",
+      "https://puzzled-rose-vulture.cyclic.app/api/upload",
       {
         name: name,
         fileType: fileType,
@@ -35,7 +35,7 @@ const getAllFiles = async (dispatch) => {
   dispatch({ type: types.ALL_FILES_LOADING });
   try {
     const res = await axios.get(
-      "https://file-sharing-w3xp.onrender.com/api/get",
+      "https://puzzled-rose-vulture.cyclic.app/api/get",
       {
         headers: {
           Authorization: "Bearer " + localStorage.getItem("file-sharing-application-jwt"),
@@ -56,7 +56,7 @@ const getSingleFile = (id) => async (dispatch) => {
   dispatch({ type: types.SINGLE_FILE_LOADING });
   try {
     const res = await axios.get(
-      `https://file-sharing-w3xp.onrender.com/api/get/${id}`,
+      `https://puzzled-rose-vulture.cyclic.app/api/get/${id}`,
       {
         headers: {
           Authorization: "Bearer " + localStorage.getItem("file-sharing-application-jwt"),
