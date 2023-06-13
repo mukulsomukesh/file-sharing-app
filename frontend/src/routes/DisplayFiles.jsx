@@ -41,7 +41,7 @@ export default function DisplayFiles() {
 { allFiles.length===0? <Center h="85%"> <Heading as="h2" size="lg" > You Have't Uploaded Any Files Yet. </Heading> </Center>: "" }
 
       {/* grid */}
-      <SimpleGrid minChildWidth="130px" spacing="2rem" p="2rem" style={{ justifyItems: "flex-start" }}>
+      <SimpleGrid minChildWidth="160px" spacing="2rem" p="2rem" style={{ justifyItems: "flex-start" }}>
         {/* map files */}
         {!isError && !isLoading && allFiles?.map((el) => (
           <Box
@@ -51,7 +51,7 @@ export default function DisplayFiles() {
             borderRadius="1rem"
             boxShadow="2xl"
             height="fit-content"
-            maxW={"130px"}
+            maxW={"160px"}
             pt="1rem"
             align="center"
             border="1px"
@@ -60,9 +60,7 @@ export default function DisplayFiles() {
 
 
 <Link to= {`/Download/${el._id}`}>
-            {/* <Center cursor="pointer" onClick={()=>{ alert("ok") }}> */}
             <BsFileEarmarkMedical size="100px" />
-            {/* </Center> */}
 </Link>
 
             <Flex
@@ -70,7 +68,7 @@ export default function DisplayFiles() {
               mt="0.5rem"
               gap="0.5rem"
               color="#1a202c"
-              justifyContent="space-around"
+              justifyContent="space-evenly"
               cursor={"pointer"}
             >
               {/* preview button */}
