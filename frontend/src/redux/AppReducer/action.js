@@ -85,8 +85,6 @@ const deleteFile = (id) => async (dispatch) => {
       }
     );
 
-    console.log("res.data.message ", res.data.message)
-
     dispatch({ type: types.DELETE_FILE_SUCCESS, payload: res.data.message });
   } catch (err) {
     console.log(err);
