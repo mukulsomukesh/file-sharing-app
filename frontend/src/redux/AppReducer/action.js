@@ -71,4 +71,28 @@ const getSingleFile = (id) => async (dispatch) => {
   }
 };
 
-export { uploadToServer, getAllFiles, getSingleFile };
+
+// delete file
+const deleteFile = (id) => async (dispatch) => {
+  dispatch({ type: types.DELETE_FILE_PROCESS });
+  try {
+    const res = await axios.delete(
+      `https://puzzled-rose-vulture.cyclic.app/api/file/${id}`,
+      {
+        headers: {
+          Authorization: "Bearer " + localStorage.getItem("file-sharing-application-jwt"),
+        },
+      }
+    );
+
+    console.log("res.data.message ", res.data.message)
+
+    dispatch({ type: types.DELETE_FILE_SUCCESS, payload: res.data.message });
+  } catch (err) {
+    console.log(err);
+    dispatch({ type: types.DELETE_FILE_FAILURE, payload: err.data.error });
+  }
+};
+
+
+export { uploadToServer, getAllFiles, getSingleFile, deleteFile };

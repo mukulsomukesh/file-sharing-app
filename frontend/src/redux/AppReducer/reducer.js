@@ -81,7 +81,27 @@ export const reducer = (state = initialState, action) => {
         isError: true,
         message: "File Upload Fail. Please Try Again!",
       };
-
+      case types.DELETE_FILE_PROCESS:
+        return {
+          ...state,
+          isLoading:true,
+          isError: false,
+          message: "",
+        };
+      case types.DELETE_FILE_SUCCESS:
+        return {
+          ...state,
+          isLoading:false,
+          isError: false,
+          message: payload,
+        };
+      case types.DELETE_FILE_FAILURE:
+        return {
+          ...state,
+          isLoading:false,
+          isError: true,
+          message: payload,
+        };
     default:
       return state;
   }

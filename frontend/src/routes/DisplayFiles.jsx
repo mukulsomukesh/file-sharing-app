@@ -27,7 +27,6 @@ export default function DisplayFiles() {
     dispatch(getAllFiles);
   }, []);
 
-  // console.log(allFiles)
 
   return (
     <>
@@ -42,7 +41,7 @@ export default function DisplayFiles() {
 { allFiles.length===0? <Center h="85%"> <Heading as="h2" size="lg" > You Have't Uploaded Any Files Yet. </Heading> </Center>: "" }
 
       {/* grid */}
-      <SimpleGrid minChildWidth="130px" spacing="2rem" p="2rem">
+      <SimpleGrid minChildWidth="130px" spacing="2rem" p="2rem" style={{ justifyItems: "flex-start" }}>
         {/* map files */}
         {!isError && !isLoading && allFiles?.map((el) => (
           <Box
@@ -81,7 +80,7 @@ export default function DisplayFiles() {
               <ShareFile el={el} />
 
               {/* file details */}
-              <FileDetails />
+              <FileDetails _id={el._id} />
 
             </Flex>
 
