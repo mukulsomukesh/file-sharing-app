@@ -78,7 +78,7 @@ export default function DisplayFiles() {
               <ShareFile el={el} />
 
               {/* file details */}
-              <FileDetails _id={el._id} />
+              <FileDetails el={el} />
 
             </Flex>
 

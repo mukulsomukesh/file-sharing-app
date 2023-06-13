@@ -1,11 +1,11 @@
-import { Button, Checkbox, useToast, IconButton, Modal, ModalBody, ModalCloseButton, ModalContent, ModalFooter, ModalHeader, ModalOverlay, Spinner, VStack, useDisclosure } from "@chakra-ui/react"
+import { Button, Checkbox, useToast, IconButton, Modal, ModalBody, ModalCloseButton, ModalContent, ModalFooter, ModalHeader, ModalOverlay, Spinner, VStack, useDisclosure, HStack, Text } from "@chakra-ui/react"
 import { useState } from "react";
 import { GiHamburgerMenu } from "react-icons/gi";
 import { useDispatch, useSelector } from "react-redux";
 import { deleteFile } from "../../redux/AppReducer/action";
 import { useEffect } from "react";
 
-export default function FileDetails({ _id }) {
+export default function FileDetails({ el }) {
 
   const isLoading = useSelector((state) => state.AppReducer.isLoading);
   const isError = useSelector((state) => state.AppReducer.isError);
@@ -35,7 +35,7 @@ export default function FileDetails({ _id }) {
 
 
   function handelDeleteFile() {
-    dispatch(deleteFile(_id));
+    dispatch(deleteFile(el._id));
   }
 
   return (
@@ -50,7 +50,12 @@ export default function FileDetails({ _id }) {
           <ModalCloseButton />
           <ModalBody>
 
-            <VStack spacing={4} align="flex-start">
+          <HStack> <Text as='b'> Name: </Text><Text> {el.name} </Text> </HStack>
+          <HStack mt={2}> <Text as='b'> Upload Date: </Text><Text> {new Date(el.createdAt).toLocaleString()} </Text> </HStack>
+          <HStack mt={2}> <Text as='b'> Last Update Date: </Text><Text> {new Date(el.updatedAt).toLocaleString()} </Text> </HStack>
+          <HStack mt={2}> <Text as='b'> File Status: </Text> <Text> {el.isProtected? "Password Protected": "Not Password Protected"} </Text> </HStack>
+
+            <VStack mt={5} spacing={4} align="flex-start">
               <Checkbox
                 isChecked={isFileSelected}
                 onChange={() => { setIsFileSelected(!isFileSelected); }}
