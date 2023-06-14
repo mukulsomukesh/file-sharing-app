@@ -92,5 +92,25 @@ const deleteFile = (id) => async (dispatch) => {
   }
 };
 
+// modifyFile file
+const modifyFile = (obj) => async (dispatch) => {
+  dispatch({ type: types.MODIFY_FILE_NAME_PROCESS });
+  try {
+    const res = await axios.put(
+      `https://puzzled-rose-vulture.cyclic.app/api/file/${obj._id}`,
+      obj,
+      {
+        headers: {
+          Authorization: "Bearer " + localStorage.getItem("file-sharing-application-jwt"),
+        },
+      }
+    );
 
-export { uploadToServer, getAllFiles, getSingleFile, deleteFile };
+    dispatch({ type: types.MODIFY_FILE_NAME_SUCCESS, payload: res.data.message });
+  } catch (err) {
+    console.log(err);
+    dispatch({ type: types.MODIFY_FILE_NAME_FAILURE, payload: err.response.data.error });
+  }
+};
+
+export { uploadToServer, getAllFiles, getSingleFile, deleteFile, modifyFile };

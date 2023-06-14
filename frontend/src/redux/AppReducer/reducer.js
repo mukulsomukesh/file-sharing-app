@@ -102,6 +102,29 @@ export const reducer = (state = initialState, action) => {
           isError: true,
           message: payload,
         };
+        case types.MODIFY_FILE_NAME_PROCESS:
+          return {
+            ...state,
+            isLoading:true,
+            isError: false,
+            message: "",
+          };
+        case types.MODIFY_FILE_NAME_SUCCESS:
+          return {
+            ...state,
+            isLoading:false,
+            isError: false,
+            message: payload,
+          };
+        case types.MODIFY_FILE_NAME_FAILURE:
+          return {
+            ...state,
+            isLoading:false,
+            isError: true,
+            message: payload,
+          };
+
+
     default:
       return state;
   }

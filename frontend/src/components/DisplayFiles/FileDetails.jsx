@@ -21,12 +21,12 @@ export default function FileDetails({ el }) {
           <ModalBody>
 
             <HStack> <Text as='b'> Name: </Text><Text> {el.name} </Text> </HStack>
+            <HStack mt={2}> <Text as='b'> File Status: </Text> <Text> {el.isProtected ? "Password Protected" : "Not Password Protected"} </Text> </HStack>
             <HStack mt={2}> <Text as='b'> Upload Date: </Text><Text> {new Date(el.createdAt).toLocaleString()} </Text> </HStack>
             <HStack mt={2}> <Text as='b'> Last Update Date: </Text><Text> {new Date(el.updatedAt).toLocaleString()} </Text> </HStack>
-            <HStack mt={2}> <Text as='b'> File Status: </Text> <Text> {el.isProtected ? "Password Protected" : "Not Password Protected"} </Text> </HStack>
 
-            <RenameFile _id={el._id} />
-            <ChangeFilePassword _id={el._id} />
+            <RenameFile el={el} />
+            <ChangeFilePassword el={el} />
 
             <DeleteFile _id={el._id} />
 
