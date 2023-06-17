@@ -7,7 +7,7 @@ import {
   Text,
 } from "@chakra-ui/react";
 import React, { useEffect } from "react";
-import { BsFileEarmarkMedical, BsEyeFill } from "react-icons/bs";
+import { BsEyeFill } from "react-icons/bs";
 import ShareFile from "../components/DisplayFiles/ShareFile";
 import FileDetails from "../components/DisplayFiles/FileDetails";
 import { getAllFiles } from "../redux/AppReducer/action";
@@ -16,6 +16,7 @@ import Loader from "../components/DisplayFiles/Loader";
 import Error from "../components/DisplayFiles/Error";
 import { Link } from 'react-router-dom'
 import Preview from "../components/DisplayFiles/Preview";
+import FileTypeIcon from "../components/DisplayFiles/FileTypeIcon";
 
 export default function DisplayFiles() {
   const dispatch = useDispatch();
@@ -60,7 +61,7 @@ export default function DisplayFiles() {
 
 
 <Link to= {`/Download/${el._id}`}>
-            <BsFileEarmarkMedical size="100px" />
+           <FileTypeIcon fileType={el.fileType} />
 </Link>
 
             <Flex
