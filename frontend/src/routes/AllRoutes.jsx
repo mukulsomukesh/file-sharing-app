@@ -7,6 +7,7 @@ import DisplayFiles from "./DisplayFiles";
 import DownloadFile from "./DownloadFile";
 import UploadFiles from "./UploadFiles";
 import UploadFileSuccess from "./UploadFileSuccess"
+import FileMoreInfo from "./FileMoreInfo";
 
 export default function AllRoutes() {
   return (
@@ -34,6 +35,8 @@ export default function AllRoutes() {
        <Route path="/Download/:id" element={ <PrivateRoutes> <DownloadFile />  </PrivateRoutes>  }></Route>
 
        <Route path="/UploadFileSuccess" element={ <PrivateRoutes> <UploadFileSuccess /> </PrivateRoutes> }></Route>
+
+       <Route path="/FileDetail/:id" element={ <PrivateRoutes> <FileMoreInfo /> </PrivateRoutes> }></Route>
 
        <Route path="*" element={<Error /> }></Route>
 
