@@ -4,6 +4,7 @@ import {
   Checkbox,
   Flex,
   Input,
+  Text,
   useToast,
 } from "@chakra-ui/react";
 import React, { useEffect, useState } from "react";
@@ -11,8 +12,12 @@ import { uploadToServer } from "../redux/AppReducer/action";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 
-export default function UploadFiles() {
+const cloudinaryAPI = process.env.REACT_APP_CLOUDINARY_API;
+const uploadPreset = process.env.REACT_APP_CLOUDINARY_UPLOAD_PRESENT;
+const cloudName = process.env.REACT_APP_CLOUDINARY_CLOUD_NAME;
+const fileSizeLimit = 10 * 1024 * 1024; // 10 MB limit
 
+export default function UploadFiles() {
   const dispatch = useDispatch();
   const [name, setName] = useState("");
   const [fileType, setFiletype] = useState("");
@@ -21,75 +26,75 @@ export default function UploadFiles() {
   const [url, setUrl] = useState("");
   const [fileProtected, setFileProtected] = useState(false);
   const [process, setProcess] = useState(false);
-  const navigate = useNavigate()
-  const toast = useToast()
-
+  const navigate = useNavigate();
+  const toast = useToast();
 
   useEffect(() => {
+
     if (url) {
       let isProtected = fileProtected;
       let pic = url;
       dispatch(uploadToServer(name, fileType, password, isProtected, pic));
-      navigate("/UploadFileSuccess")
+      navigate("/UploadFileSuccess");
 
       // toast message
-      let toastStatus = "success"
-      let message="File Successfully uploaded!"
-      toastMessage(toastStatus, message)
-
+      let toastStatus = "success";
+      let message = "File Successfully uploaded!";
+      toastMessage(toastStatus, message);
     }
 
     setProcess(false);
-      
   }, [url]);
+
+  const handleFileChange = (e) => {
+    const file = e.target.files[0];
+    if (file && file.size > fileSizeLimit) {
+      toastMessage("error", "File size more then 10MB.")
+      return;
+    }
+    else{
+      setImage(file);
+    }
+  };
 
   const postDetails = async () => {
     setProcess(true);
 
     const data = new FormData();
     data.append("file", image);
-    data.append("upload_preset", "filesharing-app");
-    data.append("cloud_name", "dmzzzl5jj");
+    data.append("upload_preset", uploadPreset);
+    data.append("cloud_name", cloudName);
     let ans;
 
-    ans = await fetch(
-      "https://api.cloudinary.com/v1_1/dmzzzl5jj/image/upload",
-      {
-        method: "post",
-        body: data,
-      }
-    )
+    ans = await fetch(`${cloudinaryAPI}`, {
+      method: "post",
+      body: data,
+    })
       .then((res) => res.json())
       .then((data) => {
-        // console.log(data)
         setName(data.original_filename);
         setFiletype(data.format);
         setUrl(data.url);
       })
       .catch((err) => {
-        
         setProcess(false);
 
         // toast message
-        let toastStatus = "error"
-        let message="File Uploading Failed!"
-        toastMessage(toastStatus, message)
-      
+        let toastStatus = "error";
+        let message = "File Uploading Failed!";
+        toastMessage(toastStatus, message);
       });
   };
 
-  function toastMessage(toastStatus, message){
-    return(
-        toast({
-          position:"top-right",
-          title: message,
-          status: toastStatus,
-          duration: 9000,
-          isClosable: true,
-        })
-    )
+  function toastMessage(toastStatus, message) {
+    return toast({
+      position: "top-right",
+      title: message,
+      status: toastStatus,
+      duration: 2500,
+      isClosable: true,
+    });
   }
-
 
   return (
     <>
@@ -100,11 +105,8 @@ export default function UploadFiles() {
         flexDirection="column"
         gap="1rem"
       >
-        {/* <Heading> Upload File </Heading> */}
-
-{/*   this input box contain all the inputs */}
         <Box
-        bg="white"
+          bg="white"
           w="20rem"
           display="flex"
           flexDirection="column"
@@ -115,29 +117,26 @@ export default function UploadFiles() {
           borderColor="teal"
           borderRadius="1rem"
         >
-
-{/* this box contain only file input */}
-            <Box height="200px"
-                    border="2px"
-                    borderColor="teal"
-                    borderStyle="dashed"
-                    borderRadius="1rem"
-                    overflow="hidden"
-      backgroundImage={`url(http://res.cloudinary.com/dmzzzl5jj/image/upload/v1675932758/ur2hvbmmuiigrnpffhxs.png)`}
-      backgroundSize="170px"
-      backgroundRepeat="no-repeat"
-      backgroundPosition="center" >
-
-{/* file input */}
-    <Input
-
-     opacity={image ? 1 : 0}
-    border="none"
-        type="file"
-        onChange={(e) => setImage(e.target.files[0])}
-        height="100%"/>
-
-        </Box>
+          <Box
+            height="200px"
+            border="2px"
+            borderColor="teal"
+            borderStyle="dashed"
+            borderRadius="1rem"
+            overflow="hidden"
+            backgroundImage={`url(http://res.cloudinary.com/dmzzzl5jj/image/upload/v1675932758/ur2hvbmmuiigrnpffhxs.png)`}
+            backgroundSize="170px"
+            backgroundRepeat="no-repeat"
+            backgroundPosition="center"
+          >
+            <Input
+              opacity={image ? 1 : 0}
+              border="none"
+              type="file"
+              onChange={handleFileChange}
+              height="100%"
+            />
+          </Box>
 
           <Checkbox
             onChange={() => {
@@ -162,12 +161,11 @@ export default function UploadFiles() {
             loadingText={process ? "Please Wait" : ""}
             variant={process ? "outline" : "solid"}
           >
-            Upload File{" "}
+            Upload File
           </Button>
 
+          <Text fontSize='sm' as="b"> Max file size is 10MB. </Text>
         </Box>
-      
-
       </Flex>
     </>
   );
