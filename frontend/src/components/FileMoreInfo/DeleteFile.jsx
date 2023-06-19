@@ -3,6 +3,7 @@ import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { deleteFile } from "../../redux/AppReducer/action";
 import { useEffect } from "react";
+import { Navigate, useNavigate } from 'react-router-dom'
 
 export default function DeleteFile({ _id }) {
 
@@ -12,6 +13,7 @@ export default function DeleteFile({ _id }) {
     const dispatch = useDispatch()
     const [isFileSelected, setIsFileSelected] = useState(false);
     const toast = useToast()
+    const navigate = useNavigate()
 
     useEffect(() => {
 
@@ -23,6 +25,10 @@ export default function DeleteFile({ _id }) {
                 duration: 3000,
                 isClosable: true,
             });
+        }
+
+        if(!isError && !isLoading && isFileSelected){
+            navigate("/")        
         }
 
     }, [isLoading, isError, message])

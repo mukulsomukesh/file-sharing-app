@@ -41,7 +41,7 @@ export default function UploadFileSuccess() {
     gap="2rem"
     bg="transparent"
       w="100%"
-      h="85%"
+      h="85vh"
     >
 {/* input for share url */}
       <InputGroup cursor="pointer" w="fit-content" bg="white">
