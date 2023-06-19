@@ -1,13 +1,15 @@
-import { Box, Container, HStack, Image, Text } from '@chakra-ui/react'
+import { Box, Container, Flex, HStack, Image, Text } from '@chakra-ui/react'
 import React, { useEffect } from 'react'
-import RenameFile from '../components/DisplayFiles/RenameFile'
-import ChangeFilePassword from '../components/DisplayFiles/ChangeFilePassword'
-import DeleteFile from '../components/DisplayFiles/DeleteFile'
+import RenameFile from '../components/FileMoreInfo/RenameFile'
+import ChangeFilePassword from '../components/FileMoreInfo/ChangeFilePassword'
+import DeleteFile from '../components/FileMoreInfo/DeleteFile'
 import { useParams } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux'
 import { getSingleFile } from '../redux/AppReducer/action';
 import Loader from '../components/DisplayFiles/Loader'
 import Error from '../components/DisplayFiles/Error'
+import RemoveFilePassword from '../components/FileMoreInfo/RemovePassword'
+import UploadFiles from './UploadFiles'
 
 
 export default function FileMoreInfo() {
@@ -33,11 +35,13 @@ export default function FileMoreInfo() {
             {/* Error display when error come */}
             {isError ? <Error /> : ""}
 
-            <Box display={isLoading && isError ? "none" : "flex"} h="85vh" w={"full"} alignContent={"center"} alignItems={"center"}>
 
+            <Box display={isLoading && isError ? "none" : ""} w={"full"} >
+
+            <Flex alignContent={"center"} alignItems={"center"} mt="10">
                 <Container textAlign={"center"}>
-                    <Text fontSize={"xl"}> {singleFile.name}  </Text>
-                    <Image border={"1px"} w="full" h="full" src={fileData} />
+                    <Text fontSize={"xl"}> {singleFile.name + "." + singleFile.fileType}   </Text>
+                    <Image border={"1px"} w="full" h="full" src={singleFile.fileData} />
                 </Container>
 
 
@@ -52,7 +56,15 @@ export default function FileMoreInfo() {
 
                     <DeleteFile _id={singleFile._id} />
 
+                    {
+                        singleFile.isProtected ?
+                            <RemoveFilePassword el={singleFile} /> : ""
+                    }
+
                 </Container>
+                </Flex>
+
+
             </Box>
 
         </>

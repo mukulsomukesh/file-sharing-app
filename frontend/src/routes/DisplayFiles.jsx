@@ -71,7 +71,6 @@ export default function DisplayFiles() {
             <Flex
               mb="0.5rem"
               mt="0.5rem"
-              gap="0.5rem"
               color="#1a202c"
               justifyContent="space-evenly"
               cursor={"pointer"}
@@ -83,10 +82,13 @@ export default function DisplayFiles() {
               <ShareFile el={el} />
 
               {/* file details */}
+              <Box w="40px">
               <Link to= {`/FileDetail/${el._id}`}>
                 <CgArrowTopRightR size="20px"  onClick={() =>  dispatch({ type: FILE_MORE_INFO, payload: el }) } />
               {/* <FileDetails el={el} /> */}
               </Link>
+              </Box>
+
             </Flex>
 
             {/* file name */}

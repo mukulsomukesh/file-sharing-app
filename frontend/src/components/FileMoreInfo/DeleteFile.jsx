@@ -25,10 +25,6 @@ export default function DeleteFile({ _id }) {
             });
         }
 
-        if (message === "File Removed." ) {
-            window.location.reload();
-        }
-
     }, [isLoading, isError, message])
 
 

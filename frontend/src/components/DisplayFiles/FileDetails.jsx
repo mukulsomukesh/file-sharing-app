@@ -1,8 +1,8 @@
 import { Button, IconButton, Modal, ModalBody, ModalCloseButton, ModalContent, ModalFooter, ModalHeader, ModalOverlay, Spinner, VStack, useDisclosure, HStack, Text } from "@chakra-ui/react"
 import { GiHamburgerMenu } from "react-icons/gi";
-import DeleteFile from "./DeleteFile";
-import RenameFile from "./RenameFile";
-import ChangeFilePassword from "./ChangeFilePassword";
+// import DeleteFile from "./DeleteFile";
+// import RenameFile from "./RenameFile";
+// import ChangeFilePassword from "./ChangeFilePassword";
 
 export default function FileDetails({ el }) {
 
@@ -25,10 +25,10 @@ export default function FileDetails({ el }) {
             <HStack mt={2}> <Text as='b'> Upload Date: </Text><Text> {new Date(el.createdAt).toLocaleString()} </Text> </HStack>
             <HStack mt={2}> <Text as='b'> Last Update Date: </Text><Text> {new Date(el.updatedAt).toLocaleString()} </Text> </HStack>
 
-            <RenameFile el={el} />
+            {/* <RenameFile el={el} />
             <ChangeFilePassword el={el} />
 
-            <DeleteFile _id={el._id} />
+            <DeleteFile _id={el._id} /> */}
 
           </ModalBody>
 

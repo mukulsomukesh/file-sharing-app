@@ -16,6 +16,9 @@ export default function RenameFile({ el }) {
     if (isError && !isLoading) {
       toastMessage(message, 'error');
     }
+    else if(!isError && !isLoading && message.length>2){
+      toastMessage(message, 'success');
+    }
   }, [isError, isLoading]);
 
   function handelRenameFile() {
@@ -25,9 +28,9 @@ export default function RenameFile({ el }) {
     else{
       el.name = inputVal;
       dispatch(modifyFile(el));
+      setInputVal("")
+      setIsCheckboxChecked(false)
     }
-
-
   }
 
   function toastMessage(msg, status) {
@@ -35,7 +38,7 @@ export default function RenameFile({ el }) {
       position: 'top-right',
       title: msg,
       status: status,
-      duration: 9000,
+      duration: 2500,
       isClosable: true,
     });
   }

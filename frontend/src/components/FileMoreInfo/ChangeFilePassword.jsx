@@ -16,6 +16,9 @@ export default function ChangeFilePassword({ el }) {
     if (isError && !isLoading) {
       toastMessage(message, 'error');
     }
+    else if(!isError && !isLoading && message.length>2){
+      toastMessage(message, 'success');
+    }
   }, [isError, isLoading]);
 
   function handelPasswordChange() {
@@ -26,6 +29,8 @@ export default function ChangeFilePassword({ el }) {
       el.isProtected= true
       el.password = inputVal;
       dispatch(modifyFile(el));
+      setInputVal("")
+      setIsCheckboxChecked(false)
     }
 
 
@@ -36,7 +41,7 @@ export default function ChangeFilePassword({ el }) {
       position: 'top-right',
       title: msg,
       status: status,
-      duration: 9000,
+      duration: 2500,
       isClosable: true,
     });
   }
