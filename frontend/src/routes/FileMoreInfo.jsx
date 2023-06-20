@@ -25,6 +25,56 @@ export default function FileMoreInfo() {
         dispatch(getSingleFile(param.id));
     }, []);
 
+    const getFilePreview = () => {
+      
+        switch (singleFile.fileType) {
+          case "jpg":
+          case "jpeg":
+          case "png":
+          case "gif":
+          case "bmp":
+          case "svg":
+            return <img src={singleFile.fileData} alt="Something Went Wrong!" />;
+          case "pdf":
+            return (
+              <embed src={singleFile.fileData} type="application/pdf" width="100%" height="500px" />
+            );
+          case "mp3":
+          case "wav":
+            return (
+              <audio controls style={{ backgroundColor: 'teal', width:"100%", padding:"0.4rem", borderRadius:"2rem" }}>
+                <source src={singleFile.fileData} type="audio/mpeg" />
+                Your browser does not support the audio element.
+              </audio>
+            );
+          case "mp4":
+          case "webm":
+          case "ogg":
+          case "avi":
+          case "mov":
+          case "wmv":
+          case "flv":
+          case "mkv":
+          case "m4v":
+            return (
+              <video width="100%" style={{ maxHeight: '75vh' }}  controls>
+                <source src={singleFile.fileData} type={`video/${singleFile.fileType}`} />
+                Your browser does not support the video tag.
+              </video>
+            );
+          case "txt":
+            return <p>{singleFile.fileData}</p>;
+          case "doc":
+          case "docx":
+            return (
+              <iframe src={`https://docs.google.com/gview?url=${singleFile.fileData}&embedded=true`} width="100%" height="500px" frameborder="0" scrolling="no"></iframe>
+            );
+          // Add more cases for additional file types here
+          default:
+            return <p>Preview not available for this file type.</p>;
+        }
+      };
+    
 
     return (
         <>
@@ -39,9 +89,10 @@ export default function FileMoreInfo() {
             <Box display={isLoading && isError ? "none" : ""} w={"full"} >
 
             <Flex alignContent={"center"} alignItems={"center"} mt="10">
-                <Container textAlign={"center"}>
-                    <Text fontSize={"xl"}> {singleFile.name + "." + singleFile.fileType}   </Text>
-                    <Image border={"1px"} w="full" h="full" src={singleFile.fileData} />
+                <Container textAlign={"center"} >
+                    <Text mb={"5"} fontSize={"xl"}> {singleFile.name + "." + singleFile.fileType}   </Text>
+                    { singleFile? getFilePreview(): ""}
+                    {/* <Image border={"1px"} w="full" h="full" src={singleFile.fileData} /> */}
                 </Container>
 
 
@@ -60,6 +111,7 @@ export default function FileMoreInfo() {
                         singleFile.isProtected ?
                             <RemoveFilePassword el={singleFile} /> : ""
                     }
+                    
 
                 </Container>
                 </Flex>
