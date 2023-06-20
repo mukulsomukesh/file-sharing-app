@@ -29,7 +29,7 @@ export default function DownloadFile() {
 
     if (!singleFile.isProtected || (singleFile.isProtected && singleFile.password === filePassword)) {
       setDownloadStatus(true);
-      const response = await fetch(singleFile.fileData);
+      const response = await fetch(singleFile.fileData.replace("http:","https:"));
       const fileData = await response.blob();
 
       // extract file extension from url
@@ -37,7 +37,7 @@ export default function DownloadFile() {
       const fileName = singleFile.name + '.' + fileExtension;
 
       // download file
-      download(fileData, fileName);
+     download(fileData, fileName);
 
       setDownloadStatus(false);
       status = 'success';
