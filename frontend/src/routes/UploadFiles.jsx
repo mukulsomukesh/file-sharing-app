@@ -33,7 +33,7 @@ export default function UploadFiles() {
 
     if (url) {
       let isProtected = fileProtected;
-      let pic = url;
+      let pic = url.replace("http:","https:");
       dispatch(uploadToServer(name, fileType, password, isProtected, pic));
       navigate("/UploadFileSuccess");
 

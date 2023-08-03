@@ -34,7 +34,7 @@ export default function FileMoreInfo() {
           case "gif":
           case "bmp":
           case "svg":
-            return <img src={singleFile.fileData} alt="Something Went Wrong!" />;
+            return <img src={singleFile.fileData.replace("http:","https:")} alt="Something Went Wrong!" />;
           case "pdf":
             return (
               <embed src={singleFile.fileData} type="application/pdf" width="100%" height="500px" />
@@ -43,7 +43,7 @@ export default function FileMoreInfo() {
           case "wav":
             return (
               <audio controls style={{ backgroundColor: 'teal', width:"100%", padding:"0.4rem", borderRadius:"2rem" }}>
-                <source src={singleFile.fileData} type="audio/mpeg" />
+                <source src={singleFile.fileData.replace("http:","https:")} type="audio/mpeg" />
                 Your browser does not support the audio element.
               </audio>
             );
@@ -58,7 +58,7 @@ export default function FileMoreInfo() {
           case "m4v":
             return (
               <video width="100%" style={{ maxHeight: '75vh' }}  controls>
-                <source src={singleFile.fileData} type={`video/${singleFile.fileType}`} />
+                <source src={singleFile.fileData.replace("http:","https:")} type={`video/${singleFile.fileType}`} />
                 Your browser does not support the video tag.
               </video>
             );
@@ -67,7 +67,7 @@ export default function FileMoreInfo() {
           case "doc":
           case "docx":
             return (
-              <iframe src={`https://docs.google.com/gview?url=${singleFile.fileData}&embedded=true`} width="100%" height="500px" frameborder="0" scrolling="no"></iframe>
+              <iframe src={`https://docs.google.com/gview?url=${singleFile.fileData.replace("http:","https:")}&embedded=true`} width="100%" height="500px" frameborder="0" scrolling="no"></iframe>
             );
           // Add more cases for additional file types here
           default:
@@ -112,10 +112,8 @@ export default function FileMoreInfo() {
                             <RemoveFilePassword el={singleFile} /> : ""
                     }
                     
-
                 </Container>
                 </Flex>
-
 
             </Box>
 

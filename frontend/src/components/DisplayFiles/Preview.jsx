@@ -14,16 +14,16 @@ export default function Preview({ fileData }) {
       case "gif":
       case "bmp":
       case "svg":
-        return <img src={fileData} alt="Something Went Wrong!" />;
+        return <img src={fileData.replace("http:","https:")} alt="Something Went Wrong!" />;
       case "pdf":
         return (
-          <embed src={fileData} type="application/pdf" width="100%" height="500px" />
+          <embed src={fileData.replace("http:","https:")} type="application/pdf" width="100%" height="500px" />
         );
       case "mp3":
       case "wav":
         return (
           <audio controls>
-            <source src={fileData} type="audio/mpeg" />
+            <source src={fileData.replace("http:","https:")} type="audio/mpeg" />
             Your browser does not support the audio element.
           </audio>
         );
@@ -38,7 +38,7 @@ export default function Preview({ fileData }) {
       case "m4v":
         return (
           <video width="100%" height="auto" controls>
-            <source src={fileData} type={`video/${fileExtension}`} />
+            <source src={fileData.replace("http:","https:")} type={`video/${fileExtension}`} />
             Your browser does not support the video tag.
           </video>
         );
@@ -47,7 +47,7 @@ export default function Preview({ fileData }) {
       case "doc":
       case "docx":
         return (
-          <iframe src={`https://docs.google.com/gview?url=${fileData}&embedded=true`} width="100%" height="500px" frameborder="0" scrolling="no"></iframe>
+          <iframe src={`https://docs.google.com/gview?url=${fileData.replace("http:","https:")}&embedded=true`} width="100%" height="500px" frameborder="0" scrolling="no"></iframe>
         );
       // Add more cases for additional file types here
       default:
