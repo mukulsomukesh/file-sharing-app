@@ -1,13 +1,15 @@
 import axios from "axios";
 import * as types from "./actionTypes";
 
+const END_POINT = "https://wild-plum-woodpecker-tux.cyclic.cloud"
+
 // upload file
 const uploadToServer = (name, fileType, password, isProtected, pic) => async (dispatch) => {
   dispatch({ type: types.UPLOAD_FILE_PROCESS });
   console.log("uploading");
   try {
     const res = await axios.post(
-      "https://puzzled-rose-vulture.cyclic.app/api/upload",
+      `${END_POINT}/api/upload`,
       {
         name: name,
         fileType: fileType,
@@ -35,7 +37,7 @@ const getAllFiles = async (dispatch) => {
   dispatch({ type: types.ALL_FILES_LOADING });
   try {
     const res = await axios.get(
-      "https://puzzled-rose-vulture.cyclic.app/api/get",
+      `${END_POINT}/api/get`,
       {
         headers: {
           Authorization: "Bearer " + localStorage.getItem("file-sharing-application-jwt"),
@@ -56,7 +58,7 @@ const getSingleFile = (id) => async (dispatch) => {
   dispatch({ type: types.SINGLE_FILE_LOADING });
   try {
     const res = await axios.get(
-      `https://puzzled-rose-vulture.cyclic.app/api/get/${id}`,
+      `${END_POINT}/api/get/${id}`,
       {
         headers: {
           Authorization: "Bearer " + localStorage.getItem("file-sharing-application-jwt"),
@@ -77,7 +79,7 @@ const deleteFile = (id) => async (dispatch) => {
   dispatch({ type: types.DELETE_FILE_PROCESS });
   try {
     const res = await axios.delete(
-      `https://puzzled-rose-vulture.cyclic.app/api/file/${id}`,
+      `${END_POINT}/api/file/${id}`,
       {
         headers: {
           Authorization: "Bearer " + localStorage.getItem("file-sharing-application-jwt"),
@@ -97,7 +99,7 @@ const modifyFile = (obj) => async (dispatch) => {
   dispatch({ type: types.MODIFY_FILE_NAME_PROCESS });
   try {
     const res = await axios.put(
-      `https://puzzled-rose-vulture.cyclic.app/api/file/${obj._id}`,
+      `${END_POINT}/api/file/${obj._id}`,
       obj,
       {
         headers: {

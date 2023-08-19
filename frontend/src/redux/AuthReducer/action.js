@@ -1,13 +1,15 @@
 import axios from "axios";
 import * as types from "./actionTypes";
 
+const END_POINT = "https://wild-plum-woodpecker-tux.cyclic.cloud"
+
 // signup function
 const signUp = (name, email, password)  => async (dispatch) => {
   dispatch({ type: types.USER_SIGNUP_PROCESS });
 
 
   try {
-    const res = await axios.post("https://puzzled-rose-vulture.cyclic.app/user", {
+    const res = await axios.post(`${END_POINT}/user`, {
       name,
       email,
       password
@@ -30,7 +32,7 @@ const login =  (email, password)  => async (dispatch) => {
   dispatch({ type: types.USER_LOGIN_PROCESS });
   
   try {
-    const res = await axios.post("https://puzzled-rose-vulture.cyclic.app/user/login", {
+    const res = await axios.post(`${END_POINT}/user/login`, {
       email,
       password
     });

@@ -1,6 +1,5 @@
 const {File} = require('../models/fileModel')
 
-
 const getFile = async(req,res) => {
     const file = await File.find({user:req.user._id})
     res.json(file)
