@@ -19,20 +19,30 @@
 </ul>
 
 </br>
-<h2> Upload File Screen </h2>
-<img src="https://drive.google.com/uc?export=view&id=17Yoo_GXjch7NLYZ9bSssssMI7yftnOIx" style="width: 100%; height: auto" title="Upload File." />
 
-<h2> All Files Screen </h2>
-<img src="https://drive.google.com/uc?export=view&id=1I35KmCKwctVTTfdUMNG4gzuvjYa83EMr" style="width: 100%; height: auto" title="All Files." />
+## Screenshots
+**Sign up**
+![Sign up](https://res.cloudinary.com/dfrhy6m3m/image/upload/v1691056346/dvfhxgdnwmqkulkiwr9p.png)
 
-<h2> Download File Screen </h2>
-<img src="https://drive.google.com/uc?export=view&id=1KODl2qTKxAhWXulLDNvl6fs0q29bx0uM" style="width: 100%; height: auto" title="Download." />
+**Login**
+![Login](https://res.cloudinary.com/dfrhy6m3m/image/upload/v1691056361/yczulojkiaakhepr8mtp.png)
 
-<h2> Signup Screen </h2>
-<img src="https://drive.google.com/uc?export=view&id=1r-w0hwntCze9mKFkY4Yux1f-2bSaYo1j" style="width: 100%; height: auto" title="Signup." />
+**Upload File**
+![Upload_File](https://res.cloudinary.com/dfrhy6m3m/image/upload/v1691056794/zriyikjldy1ykov8ahdr.png)
 
-<h2> Login Screen </h2>
-<img src="https://drive.google.com/uc?export=view&id=173sg3Z4MV5BqpBmMFQi3lzzpMWpjBM2r" style="width: 100%; height: auto" title="Login." />
+**All Files**
+![All Files](https://res.cloudinary.com/dfrhy6m3m/image/upload/v1691055912/cakccj65p20zjiarlp9u.png)
+
+**File Preview**
+![File_Preview](https://res.cloudinary.com/dfrhy6m3m/image/upload/v1691056022/duzhamgxlax2zrzswgmw.png)
+
+
+**File Details**
+![File Details](https://res.cloudinary.com/dfrhy6m3m/image/upload/v1691055934/ckwnmlvmfhuvexq32dl8.png)
+
+**Download File**
+![Download File](https://res.cloudinary.com/dfrhy6m3m/image/upload/v1691056772/rjnoj7tc6qpijlpr1f9v.png)
+
 
 <h1> Tech Stack </h1>
 <p>
@@ -44,6 +54,34 @@
     <img src="https://img.shields.io/badge/MongoDB-47A248?style=for-the-badge&logo=mongodb&logoColor=white" alt="mongodb" />
     <img src="https://img.shields.io/badge/npm-CB3837?style=for-the-badge&logo=npm&logoColor=white" alt="npm" />
 </p>
+
+<h1> API Endpoints </h1>
+<ul> 
+<li> https://puzzled-rose-vulture.cyclic.app  </li>
+<li> POST /user - signup </li>
+<li> POST /user/login - login </li>
+<li> POST /api/upload - upload file </li>
+<li> GET /api/get - get all files </li>
+<li> GET /api/get/id - get all details of an file </li>
+<li> DELETE /api/file/id - delete file </li>
+<li> PUT /api/file/id - modify file data </li>
+</ul>
+
+<h1>  Backend Installation </h1>
+<ul> 
+<li> clone repo  </li>
+<li> cd backend </li>
+<li> npm install </li>
+<li> node index.js </li>
+</ul>
+
+<h1>  Frontend Installation </h1>
+<ul> 
+<li> clone repo  </li>
+<li> cd frontend </li>
+<li> npm install </li>
+<li> npm start </li>
+</ul>
 
 <h1> Team Members </h1>
 <ul> 
