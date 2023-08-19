@@ -3,7 +3,7 @@
 <a href="https://file-sharing-application.netlify.app/" target="blank">
         <img src="https://img.shields.io/static/v1?style=for-the-badge&message=Want to see live preview »&color=1BB91F&logo=Bluefly&logoColor=FFFFFF&label=" alt="Bluefly-Clone" />
     </a>
-<p> The File Sharing App allow user to Signup/Login & upload files from your device and protect them with a password. Sharing files is as simple as sharing a link, allowing others to access and download the file with ease.
+<p> The File Sharing App allow the user to Signup/Login & upload files from their device and protect them with a password. Sharing files is as simple as sharing a link, allowing others to access and download the file with ease.
 
  </p>
 
@@ -57,12 +57,12 @@
 
 <h1> API Endpoints </h1>
 <ul> 
-<li> https://puzzled-rose-vulture.cyclic.app  </li>
+<li> https://wild-plum-woodpecker-tux.cyclic.cloud  </li>
 <li> POST /user - signup </li>
 <li> POST /user/login - login </li>
 <li> POST /api/upload - upload file </li>
 <li> GET /api/get - get all files </li>
-<li> GET /api/get/id - get all details of an file </li>
+<li> GET /api/get/id - get all details of a file </li>
 <li> DELETE /api/file/id - delete file </li>
 <li> PUT /api/file/id - modify file data </li>
 </ul>
