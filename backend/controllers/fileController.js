@@ -19,7 +19,6 @@ const getFile = async (req, res) => {
 };
 
 
-
 // upload file
 const uploadFile = (req, res) => {
   const { name, fileType, isProtected, password, pic } = req.body;
@@ -50,6 +49,16 @@ const getSingleFile = async (req, res) => {
     // if file not found
     if (!file) {
       return res.status(404).json({ message: "File not found" });
+    }
+
+    // User is not authorized, exclude 'fileData' from the response
+    if (file.user.toString() !== req.user._id.toString()) {
+      return res.json({
+        _id: file._id,
+        name: file.name,
+        fileType: file.fileType,
+        isProtected: file.isProtected,
+      });
     }
 
     // return response
@@ -103,5 +112,40 @@ const deleteFile = async (req, res) => {
 }
 
 
+// check file password for download file 
+const checkFilePassword = async (req, res) => {
+  try {
+    const fileId = req.params.id;
+    const providedPassword = req.body.password;
 
-module.exports = { getFile, uploadFile, getSingleFile, deleteFile, updateFile }
+    // Get file 
+    const file = await File.findById(fileId);
+
+    // if file not found
+    if (!file) {
+      return res.status(404).json({ message: "File not found" });
+    }
+
+    // if file is password protected
+    if (file.isProtected) {
+      if (providedPassword === file.password) {
+        // Password matches, return the file data
+        console.log(providedPassword, file.password)
+        return res.json({ fileData: file.fileData });
+      } else {
+        // Incorrect password
+        return res.status(401).json({ message: "Incorrect password" });
+      }
+    } else {
+      // File is not protected, return the file data
+      return res.json({ fileData: file.fileData });
+    }
+  } catch (err) {
+    console.error(err);
+    return res.status(500).json({ message: "Internal server error" });
+  }
+};
+
+
+
+module.exports = { getFile, uploadFile, getSingleFile, deleteFile, updateFile, checkFilePassword }

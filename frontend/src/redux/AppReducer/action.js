@@ -1,7 +1,7 @@
 import axios from "axios";
 import * as types from "./actionTypes";
 
-const END_POINT = "https://wild-plum-woodpecker-tux.cyclic.cloud"
+const END_POINT = "http://localhost:8080"
 
 // upload file
 const uploadToServer = (name, fileType, password, isProtected, pic) => async (dispatch) => {
