@@ -6,7 +6,6 @@ const END_POINT = "https://wild-plum-woodpecker-tux.cyclic.cloud"
 // upload file
 const uploadToServer = (name, fileType, password, isProtected, pic) => async (dispatch) => {
   dispatch({ type: types.UPLOAD_FILE_PROCESS });
-  console.log("uploading");
   try {
     const res = await axios.post(
       `${END_POINT}/api/upload`,
@@ -115,4 +114,25 @@ const modifyFile = (obj) => async (dispatch) => {
   }
 };
 
-export { uploadToServer, getAllFiles, getSingleFile, deleteFile, modifyFile };
+
+//  check password for downloaded file
+const checkPasswordForDownloadFile = (password, id) => async (dispatch) => {
+  dispatch({ type: types.DOWNLOAD_FILE_PROCESS });
+  try {
+    const res = await axios.post(
+      `${END_POINT}/api/download/file/validate/${id}`,{password: password,},
+      {
+        headers: {
+          Authorization: "Bearer " + localStorage.getItem("file-sharing-application-jwt"),
+        },
+      }
+    );
+    dispatch({ type: types.DOWNLOAD_FILE_SUCCESS, payload: res.data.fileData });
+  } catch (err) {
+    console.log(err);
+    dispatch({ type: types.DOWNLOAD_FILE_FAILURE, payload:err.response.data.message });
+  }
+}
+
+
+export { uploadToServer, getAllFiles, getSingleFile, deleteFile, modifyFile, checkPasswordForDownloadFile };
