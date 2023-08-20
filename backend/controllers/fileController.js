@@ -72,8 +72,6 @@ const getSingleFile = async (req, res) => {
 };
 
 
-
-
 // modify file data
 const updateFile = async (req, res) => {
   const { name, fileType, isProtected, password, fileData } = req.body;
@@ -130,7 +128,6 @@ const checkFilePassword = async (req, res) => {
     if (file.isProtected) {
       if (providedPassword === file.password) {
         // Password matches, return the file data
-        console.log(providedPassword, file.password)
         return res.json({ fileData: file.fileData });
       } else {
         // Incorrect password
