@@ -18,6 +18,7 @@ import Error from "../components/DisplayFiles/Error";
 import { Link } from 'react-router-dom'
 import Preview from "../components/DisplayFiles/Preview";
 import FileTypeIcon from "../components/DisplayFiles/FileTypeIcon";
+import NoDataFound from "../components/DisplayFiles/NoDataFound";
 
 const FILE_MORE_INFO = "FILE_MORE_INFO";
 
@@ -42,7 +43,7 @@ export default function DisplayFiles() {
 {isError?  <Error /> : "" }
 
 {/* no file is uploaded yed */}
-{ allFiles.length===0? <Center h="85%"> <Heading as="h2" size="lg" > You Have't Uploaded Any Files Yet. </Heading> </Center>: "" }
+{ !isLoading && allFiles.length===0? <NoDataFound /> : "" }
 
       {/* grid */}
       <SimpleGrid minChildWidth="140px" spacing="2rem" p="2rem" style={{ justifyItems: "flex-start" }}>
