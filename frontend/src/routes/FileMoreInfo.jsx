@@ -37,7 +37,7 @@ export default function FileMoreInfo() {
             return <img src={singleFile.fileData.replace("http:","https:")} alt="Something Went Wrong!" />;
           case "pdf":
             return (
-              <embed src={singleFile.fileData} type="application/pdf" width="100%" height="500px" />
+              <embed src={singleFile.fileData.replace("http:","https:")} type="application/pdf" width="100%" height="500px" />
             );
           case "mp3":
           case "wav":

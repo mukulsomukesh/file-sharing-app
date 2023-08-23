@@ -40,10 +40,10 @@ const login =  (email, password)  => async (dispatch) => {
     dispatch({ type: types.USER_LOGIN_SUCCESS, payload: res });
     localStorage.setItem("file-sharing-application-jwt", res.data.token)
   } catch (err) {
-    console.error(err);
+    console.error(err.response.data.error);
     dispatch({
       type: types.USER_LOGIN_FAILURE,
-      payload: "Somthing Went Wrong",
+      payload: err.response.data.error,
     });
   }
 };
