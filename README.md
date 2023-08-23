@@ -1,8 +1,14 @@
 # File Sharing App
 
 <a href="https://file-sharing-application.netlify.app/" target="blank">
-        <img src="https://img.shields.io/static/v1?style=for-the-badge&message=Want to see live preview »&color=1BB91F&logo=Bluefly&logoColor=FFFFFF&label=" alt="Bluefly-Clone" />
+        <img src="https://img.shields.io/static/v1?style=for-the-badge&message=Want to see live preview »&color=B9351B&logo=Bluefly&logoColor=FFFFFF&label=" alt="Bluefly-Clone" />
     </a>
+</br>
+
+<a href="https://drive.google.com/file/d/1BlACPcpmBkKHRxUE_LEMrB4yljPJVxV_/view?usp=sharing" target="blank">
+        <img src="https://img.shields.io/static/v1?style=for-the-badge&message=Video Walkthrough of the project »&color=1BB91F&logo=Bluefly&logoColor=FFFFFF&label=" alt="Bluefly-Clone" />
+    </a>
+    
 <p> The File Sharing App allow the user to Signup/Login & upload files from their device and protect them with a password. Sharing files is as simple as sharing a link, allowing others to access and download the file with ease.
 
  </p>
@@ -65,6 +71,7 @@
 <li> GET /api/get/id - get all details of a file </li>
 <li> DELETE /api/file/id - delete file </li>
 <li> PUT /api/file/id - modify file data </li>
+<li> POST /api/download/file/validate/id - check file password and download the file </li>
 </ul>
 
 <h1>  Backend Installation </h1>
