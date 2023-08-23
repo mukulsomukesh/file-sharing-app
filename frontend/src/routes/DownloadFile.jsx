@@ -6,6 +6,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { useParams } from 'react-router-dom';
 import { checkPasswordForDownloadFile, getSingleFile } from '../redux/AppReducer/action';
 import download from 'downloadjs';
+import Error from "../components/DisplayFiles/Error"
 
 export default function DownloadFile() {
   const [isProtected, setIsProtected] = useState(true);
@@ -127,7 +128,7 @@ export default function DownloadFile() {
             </Button>
           </Box>
         ) : (
-          ''
+          <Error message="File Not Found!" />
         )}
       </Flex>
   );
