@@ -17,7 +17,7 @@ import { AiOutlinePoweroff } from 'react-icons/ai';
 
 const Links = [
   {id:0, name: "All Files", path: "/" },
-  {id:1, name: "Upload File", path: "/UploadFiles" },
+  {id:1, name: "Upload File", path: "/upload_files" },
 ];
 
 export default function Navbar() {

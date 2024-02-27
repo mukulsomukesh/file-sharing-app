@@ -12,7 +12,7 @@ export default function PrivateRoute({children}) {
         // store requested page url in local storage
         localStorage.setItem("file-sharing-app-redirect-url", window.location.pathname);
  
-        return <Navigate to="/authentication"> </Navigate>
+        return <Navigate to="/signup"> </Navigate>
     }
     else{
         return children
