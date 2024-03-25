@@ -25,7 +25,7 @@ export default function Login() {
 
   const dispatch = useDispatch()
 
-  const [userInput, setUserInput] = useState({ email: "honor@gmail.com", password: "1234" })
+  const [userInput, setUserInput] = useState({ email: "", password: "" })
   const [inputErrors, setInputErrors] = useState({ email: "", password: "" });
   const loginMessage = useSelector((state) => state.AuthReducer.loginMessage)
   const isProcessing = useSelector((state) => state.AuthReducer.isProcessing)
@@ -63,10 +63,10 @@ export default function Login() {
     }
 
     // // check for max length
-    if (trimmedPassword.length < 8) {
-      setInputErrors((prev) => ({ ...prev, password: "Password must contain at least 8 characters" }));
-      hasError = true;
-    }
+    // if (trimmedPassword.length < 8) {
+    //   setInputErrors((prev) => ({ ...prev, password: "Password must contain at least 8 characters" }));
+    //   hasError = true;
+    // }
 
     if (hasError) {
       return;

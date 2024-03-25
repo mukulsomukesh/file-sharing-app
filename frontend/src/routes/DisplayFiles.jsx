@@ -1,14 +1,28 @@
 import {
   Box,
+  Button,
   Center,
   Flex,
   Heading,
+  Input,
   SimpleGrid,
+  Table,
+  TableCaption,
+  TableContainer,
+  Tag,
+  TagLabel,
+  Tbody,
+  Td,
   Text,
+  Tfoot,
+  Th,
+  Thead,
+  Tooltip,
+  Tr,
 } from "@chakra-ui/react";
 import React, { useEffect } from "react";
 import { BsEyeFill, BsArrowUpRight } from "react-icons/bs";
-import {CgArrowTopRightR} from "react-icons/cg"
+import { CgArrowTopRightR } from "react-icons/cg"
 import ShareFile from "../components/DisplayFiles/ShareFile";
 import FileDetails from "../components/DisplayFiles/FileDetails";
 import { getAllFiles } from "../redux/AppReducer/action";
@@ -36,71 +50,83 @@ export default function DisplayFiles() {
   return (
     <>
 
-{/* loader Display when data is loading */}
-{isLoading?  <Loader /> : "" }
+      {/* loader Display when data is loading */}
+      {isLoading ? <Loader /> : ""}
 
-{/* Error display when error come */}
-{isError?  <Error /> : "" }
+      {/* Error display when error come */}
+      {isError ? <Error /> : ""}
 
-{/* no file is uploaded yed */}
-{ !isLoading && allFiles.length===0? <NoDataFound /> : "" }
+      {/* no file is uploaded yed */}
+      {!isLoading && allFiles.length === 0 ? <NoDataFound /> : ""}
 
-      {/* grid */}
-      <SimpleGrid minChildWidth="140px" spacing="2rem" p="2rem" style={{ justifyItems: "flex-start" }}>
-        {/* map files */}
-        {!isError && !isLoading && allFiles?.map((el) => (
-          <Box
-          key={el.id}
-          m="auto"
-            overflow="hidden"
-            borderRadius="1rem"
-            boxShadow="2xl"
-            height="fit-content"
-            w={"140px"}
-            h={"190px"}
-            pt="1rem"
-            align="center"
-            border="1px"
-            borderColor="teal"
-          >
+      <Box w={"92%"} m="auto" border={"1px"} mt="8" mb="8" borderRadius={"10px"} borderColor={"gray.300"} >
+        <TableContainer>
+          <Table variant='simple'>
+            <Thead>
+              <Tr h={"60px"} >
+                <Th >SR No</Th>
+                <Th style={{ maxWidth: '300px', whiteSpace: 'nowrap', overflow: 'hidden', textOverflow: 'ellipsis' }}>File Name</Th>
+                <Th >File Type</Th>
+                <Th >Upload Date</Th>
+                <Th >Last Update</Th>
+                <Th >Status</Th>
+                <Th textAlign={"right"} >Actions</Th>
+                {/* <Th>Download File</Th> */}
+                {/* <Th isNumeric>multiply by</Th> */}
+              </Tr>
+            </Thead>
+            <Tbody>
+              {!isError && !isLoading && allFiles?.map((el, index) => (
+
+                <Tr>
+                  <Td >{index + 1}</Td>
+                  <Td style={{ maxWidth: '300px', whiteSpace: 'nowrap', overflow: 'hidden', textOverflow: 'ellipsis' }} >{el.name}.{el.fileType}</Td>
+                  <Td>.{el.fileType}</Td>
+                  <Td>{new Date(el.createdAt).toLocaleString()}</Td>
+                  <Td>{new Date(el.updatedAt).toLocaleString()}</Td>
+                  <Td  >
+                    <Tag size='lg' colorScheme={el.isProtected ? "red" : "green"} borderRadius='full'>
+                      <TagLabel>{el.isProtected ? "Password Protected" : "Not Protected"}</TagLabel>
+                    </Tag>
+
+                  </Td>
+                  <Td display={"flex"} justifyContent={"space-around"}  >
+
+                    {/* preview button */}
+                    <Preview fileData={el.fileData} />
+
+                    {/* share file option */}
+                    <ShareFile el={el} />
+
+                    <Tooltip hasArrow label='File Details' bg='primary.500'>
+                      <Box h="20px" w="20px" ml={"3"}>
+                        <Link to={`/FileDetail/${el._id}`}>
+                          <CgArrowTopRightR size="20px" onClick={() => dispatch({ type: FILE_MORE_INFO, payload: el })} />
+                          {/* <FileDetails el={el} /> */}
+                        </Link>
+                      </Box>
+                    </Tooltip>
 
 
-<Link to= {`/Download/${el._id}`}>
-           <FileTypeIcon fileType={el.fileType} />
-</Link>
+                  </Td>
 
-            <Flex
-              mb="0.5rem"
-              mt="0.5rem"
-              color="#1a202c"
-              justifyContent="space-evenly"
-              cursor={"pointer"}
-            >
-              {/* preview button */}
-              <Preview fileData={el.fileData} />
+                </Tr>
+              ))}
 
-              {/* share file option */}
-              <ShareFile el={el} />
+            </Tbody>
+            {/* <Tfoot><Button> Preiew</Button> Imperial to metric conversion factors <Button>Next</Button>
 
-              {/* file details */}
-              <Box w="40px">
-              <Link to= {`/FileDetail/${el._id}`}>
-                <CgArrowTopRightR size="20px"  onClick={() =>  dispatch({ type: FILE_MORE_INFO, payload: el }) } />
-              {/* <FileDetails el={el} /> */}
-              </Link>
-              </Box>
+            </Tfoot> */}
+          </Table>
 
-            </Flex>
+          {/* <Flex justifyContent={"center"} alignItems={"center"} gap="4" mt={4} mb={4} >
+            <Button> Preiew</Button> Page 1 of 3 <Button>Next</Button>
+          </Flex> */}
+        </TableContainer>
+      </Box>
 
-            {/* file name */}
-            <Flex justifyContent="center" alignItems="center" bg="teal" p="0.5rem" color="white" h="40px">
-  <Text lineHeight="1rem" m="0px" p="0px" textAlign="center" maxWidth="100%" isTruncated>
-    {el.name}.{el.fileType}
-  </Text>
-</Flex>
-          </Box>
-        ))}
-      </SimpleGrid>
+
+
     </>
   );
 }

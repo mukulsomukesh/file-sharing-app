@@ -1,4 +1,4 @@
-import { Box, Button, IconButton, Modal, ModalBody, ModalCloseButton, ModalContent, ModalFooter, ModalHeader, ModalOverlay, useDisclosure } from "@chakra-ui/react";
+import { Box, Button, IconButton, Modal, ModalBody, ModalCloseButton, ModalContent, ModalFooter, ModalHeader, ModalOverlay, Tooltip, useDisclosure } from "@chakra-ui/react";
 import { BsEyeFill } from "react-icons/bs";
 
 export default function Preview({ fileData }) {
@@ -61,6 +61,7 @@ export default function Preview({ fileData }) {
 
   return (
     <>
+    <Tooltip hasArrow label='File Preview' bg='primary.500'>
       <IconButton
         onClick={onOpen}
         bg="transparent"
@@ -69,6 +70,7 @@ export default function Preview({ fileData }) {
         w="20px"
         icon={<BsEyeFill size="20px" />}
       />
+      </Tooltip>
 
       <Modal isOpen={isOpen} onClose={onClose}>
         <ModalOverlay />
