@@ -1,32 +1,32 @@
 import {
   Box,
   Flex,
-  HStack,
-  IconButton,
   Button,
   useDisclosure,
-  Stack,
   Text,
+  Menu,
+  MenuButton,
+  Avatar,
+  MenuList,
+  Center,
+  MenuDivider,
+  MenuItem,
 } from "@chakra-ui/react";
-import { RxHamburgerMenu } from "react-icons/rx";
-import { GrFormClose } from "react-icons/gr";
 import { Link, useLocation } from "react-router-dom";
 import { useSelector } from "react-redux";
-import { AiOutlinePoweroff } from 'react-icons/ai';
 
 
 const Links = [
-  {id:0, name: "All Files", path: "/" },
-  {id:1, name: "Upload File", path: "/upload_files" },
+  { id: 0, name: "All Files", path: "/" },
+  { id: 1, name: "Upload File", path: "/upload_files" },
 ];
 
 export default function Navbar() {
- 
+
   const isLogin = useSelector((store) => store.AuthReducer.isLogin)
-  const { isOpen, onOpen, onClose } = useDisclosure();
   const location = useLocation();
 
-  function handelLogout(){
+  function handelLogout() {
 
     // remove token from local storage
     localStorage.removeItem("file-sharing-application-jwt")
@@ -37,8 +37,8 @@ export default function Navbar() {
 
   return (
     <>
-    {/* box container */}
-      <Box boxShadow="md" >
+      {/* box container */}
+      <Box boxShadow="md" display={!isLogin ? "none" : ""} >
 
         {/* flex that contain all the links */}
         <Flex
@@ -49,63 +49,68 @@ export default function Navbar() {
           justifyContent={"space-between"}
         >
 
-          {/* Text & Logout   */}
-          {!isLogin? 
-            <Text fontSize={"2xl"} as="b"> File Sharing App </Text>:
+          {/* app name */}
+          <Text fontSize={"2xl"} color={"primary.500"} as="b">Secure File Sharing </Text>
 
-            // logout button
-            <Button
-            leftIcon={<AiOutlinePoweroff />}
-            variant="outline"
-            colorScheme="teal"
-            onClick={()=>{ handelLogout() }}>
-            Logout
-          </Button>
+          {/* menu display only when user login   */}
+          {isLogin && (
 
-             }
+            <Menu>
 
-          {/* hamburger & close button */}
-          <IconButton
-            icon={isOpen ? <GrFormClose /> : <RxHamburgerMenu />}
-            display={{ md: "none" }}
-            onClick={isOpen ? onClose : onOpen}
-          />
+              {/* menu button */}
+              <MenuButton
+                as={Button}
+                rounded={'full'}
+                variant={'link'}
+                cursor={'pointer'}
+                minW={0}
+                border={"2px"}
+                borderColor={"primary.500"}
+              >
+                <Avatar
+                  size={'md'}
+                  src={'https://img.freepik.com/free-vector/businessman-character-avatar-isolated_24877-60111.jpg?size=626&ext=jpg&ga=GA1.1.387038565.1711396958&semt=ais'}
+                />
+              </MenuButton>
 
-{/* large screen view */}
-          <HStack spacing={4} display={{ base: "none", md: "flex" }}>
+              {/* menu list */}
+              <MenuList alignItems={'center'}>
+                <br />
 
-            {/* map links */}
-            {Links.map((el) => (
-              <Link to={el.path} key={el.id} >
-                <Button
-                  variant={location.pathname === el.path ? "solid" : "outline"}
-                  colorScheme="teal">
-                  {el.name}
-                </Button>
-              </Link>
-            ))}
-          </HStack>
+                {/* profile image */}
+                <Center>
+                  <Avatar
+                    size={'2xl'}
+                    src={'https://img.freepik.com/free-vector/businessman-character-avatar-isolated_24877-60111.jpg?size=626&ext=jpg&ga=GA1.1.387038565.1711396958&semt=ais'}
+                  />
+                </Center>
+                <br />
+                <Center fontWeight={"bold"} >
+                  <p>Mukul Jatav</p>
+                </Center>
+                <br />
+                <MenuDivider />
+
+                {/* map items */}
+                {Links.map((el) => (
+                  <Link to={el.path} key={el.id} >
+                    <MenuItem
+                      py="2"
+                      as={location.pathname === el.path ? "b" : ""}
+                      _hover={{ background: "primary.500", color: "primary.50" }}
+                    >
+                      {el.name}
+                    </MenuItem>
+                  </Link>
+                ))}
+
+                {/* logout button */}
+                <MenuItem _hover={{ background: "primary.500", color: "primary.50" }} borderTop={"2px"} borderColor={"primary.500"} onClick={() => { handelLogout() }}> LOGOUT </MenuItem>
+
+              </MenuList>
+            </Menu>
+          )}
         </Flex>
-
-{/* small screen view */}
-        {isOpen ? (
-          <Flex display={{ md: "none" }}>
-            <Stack p="1rem"  spacing={4} style={{ position:"absolute" ,zIndex:"1", left:"auto", right:"auto"}} bg="inherit" float="right" >
-            
-            {/* map links */}
-              {Links.map((el) => (
-                <Link to={el.path} key={el.id}>
-                  <Button
-                    variant={location.pathname === el.path ? "outline" : "solid"}
-                    colorScheme="teal">
-                    {el.name}
-                  </Button>
-                </Link>
-              ))}
-            </Stack>
-          </Flex>
-        ) : null}
-
       </Box>
     </>
   );
