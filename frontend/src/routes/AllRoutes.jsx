@@ -7,8 +7,8 @@ import DownloadFile from "./DownloadFile";
 import UploadFiles from "./UploadFiles";
 import UploadFileSuccess from "./UploadFileSuccess"
 import FileMoreInfo from "./FileMoreInfo";
-import Signup from "../components/Authentication/Signup";
-import Login from "../components/Authentication/Login";
+import Login from "./Login";
+import Signup from "./Signup";
 
 export default function AllRoutes() {
   return (
