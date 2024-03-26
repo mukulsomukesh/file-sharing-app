@@ -9,6 +9,7 @@ import UploadFileSuccess from "./UploadFileSuccess"
 import FileMoreInfo from "./FileMoreInfo";
 import Login from "./Login";
 import Signup from "./Signup";
+import PageNotFound from "./PageNotFound";
 
 export default function AllRoutes() {
   return (
@@ -39,9 +40,9 @@ export default function AllRoutes() {
 
        <Route path="/upload_file_success" element={ <PrivateRoutes> <UploadFileSuccess /> </PrivateRoutes> }></Route>
 
-       <Route path="/file/:id" element={ <PrivateRoutes> <FileMoreInfo /> </PrivateRoutes> }></Route>
+       <Route path="/FileDetail/:id" element={ <PrivateRoutes> <FileMoreInfo /> </PrivateRoutes> }></Route>
 
-       <Route path="*" element={<Error /> }></Route>
+       <Route path="*" element={ <PrivateRoutes> <PageNotFound /> </PrivateRoutes> }></Route>
 
       </Routes>
     </>
