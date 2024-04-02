@@ -4,7 +4,7 @@ import App from './App';
 import reportWebVitals from './reportWebVitals';
 import { ChakraProvider, extendTheme } from '@chakra-ui/react'
 import { BrowserRouter } from "react-router-dom";
-
+import './index.css';
 import { Provider } from 'react-redux';
 import { store } from "./redux/store"
 const root = ReactDOM.createRoot(document.getElementById('root'));
@@ -12,14 +12,15 @@ const root = ReactDOM.createRoot(document.getElementById('root'));
 
 const colors = {
   primary: {
-    50: '#b8c6fa',
-    100: '#88a0f6',
-    200: '#597af3',
-    300: '#2954ef',
+    50: '#fafdfd',
+    100: '#ecf9f8',
+    200: '#c9e6e7',
+    300: "#77cfd2",
+    400: '#00a6ab',
+    500: '#275556',
   },
   secondry: {
-    50: '#f5f6fa',
-    50: '#e6eaf3',
+    50: '#415570',
   }
 }
 
