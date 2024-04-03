@@ -1,7 +1,8 @@
 import axios from "axios";
 import * as types from "./actionTypes";
 
-const END_POINT = "https://wild-plum-woodpecker-tux.cyclic.cloud"
+// const END_POINT = "https://wild-plum-woodpecker-tux.cyclic.cloud"
+const END_POINT = "http://localhost:8080"
 
 // upload file
 const uploadToServer = (name, fileType, password, isProtected, pic) => async (dispatch) => {
@@ -32,11 +33,11 @@ const uploadToServer = (name, fileType, password, isProtected, pic) => async (di
 
 
 // get all files 
-const getAllFiles = async (dispatch) => {
+const getAllFiles = (page) => async (dispatch) => {
   dispatch({ type: types.ALL_FILES_LOADING });
   try {
     const res = await axios.get(
-      `${END_POINT}/api/get`,
+      `${END_POINT}/api/get?page=${page}`,
       {
         headers: {
           Authorization: "Bearer " + localStorage.getItem("file-sharing-application-jwt"),
