@@ -1,4 +1,5 @@
 {
+  "proxy":"https://wild-plum-woodpecker-tux.cyclic.cloud",
   "name": "frontend",
   "version": "0.1.0",
   "private": true,
