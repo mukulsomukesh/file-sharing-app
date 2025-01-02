@@ -47,7 +47,12 @@ import {
       borderTop="1px"
       borderColor="primary.500"
       bg="#f4f5f7"
-        color="primary.500">
+        color="primary.500"
+        zIndex="999" 
+        bottom={0}
+        position="fixed"
+        w="100%"
+        >
         <Container
           as={Stack}
           maxW={'8xl'}

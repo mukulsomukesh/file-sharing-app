@@ -38,10 +38,11 @@ export default function Navbar() {
   return (
     <>
       {/* box container */}
-      <Box boxShadow="md" display={!isLogin ? "none" : ""} >
+      <Box boxShadow="md" w="100%" bg="white" h="80px" display={!isLogin ? "none" : ""}   zIndex="999"  position="fixed">
 
         {/* flex that contain all the links */}
         <Flex
+        h="100%"
           p="1.2rem"
           pl="2rem"
           pr="2rem"
