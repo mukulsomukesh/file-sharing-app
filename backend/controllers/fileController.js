@@ -3,20 +3,41 @@ const { File } = require('../models/fileModel')
 
 // get all files
 const getFile = async (req, res) => {
+
+  let { page } = req.query
+
+  const limit = 10; // per page limit
+
   try {
+    // Count total number of files
+    const totalCount = await File.countDocuments({ user: req.user._id });
 
-    // find all files
-    const files = await File.find({ user: req.user._id }).select('-password');
+    // Calculate total pages
+    const totalPages = Math.ceil(totalCount / limit);
 
-    // response
-    res.json(files);
+    // Calculate offset
+    const skip = (page - 1) * limit;
+
+    // Find files for the current page
+    const files = await File.find({ user: req.user._id })
+      .select('-password')
+      .skip(skip)
+      .limit(limit);
+
+    // Response
+    res.json({
+      files: files,
+      currentPage: page,
+      totalPages: totalPages,
+      totalFiles: totalCount
+    });
   } catch (err) {
-
-    // console and send error in response
+    // Log error and send response
     console.error(err);
     res.status(500).json({ message: "Internal server error" });
   }
 };
+
 
 
 // upload file
