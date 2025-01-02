@@ -28,26 +28,26 @@
 
 ## Screenshots
 **Sign up**
-![Sign up](https://res.cloudinary.com/dfrhy6m3m/image/upload/v1691056346/dvfhxgdnwmqkulkiwr9p.png)
+![Sign up](https://res.cloudinary.com/dfrhy6m3m/image/upload/v1735849543/n1jmmbdshvarzhtmff0j.png)
 
 **Login**
-![Login](https://res.cloudinary.com/dfrhy6m3m/image/upload/v1691056361/yczulojkiaakhepr8mtp.png)
+![Login](https://res.cloudinary.com/dfrhy6m3m/image/upload/v1735849529/rqkysncbmwczo5wxx6ii.png)
 
 **Upload File**
-![Upload_File](https://res.cloudinary.com/dfrhy6m3m/image/upload/v1691056794/zriyikjldy1ykov8ahdr.png)
+![Upload_File](https://res.cloudinary.com/dfrhy6m3m/image/upload/v1735849561/lmsbubqsxbnt12i5fnfb.png)
 
 **All Files**
-![All Files](https://res.cloudinary.com/dfrhy6m3m/image/upload/v1691055912/cakccj65p20zjiarlp9u.png)
+![All Files](https://res.cloudinary.com/dfrhy6m3m/image/upload/v1735849749/j92evec7ja2ppmdpfmu6.png)
 
 **File Preview**
-![File_Preview](https://res.cloudinary.com/dfrhy6m3m/image/upload/v1691056022/duzhamgxlax2zrzswgmw.png)
+![File_Preview](https://res.cloudinary.com/dfrhy6m3m/image/upload/v1735849765/coiqkyuyhj16lb8cej8w.png)
 
 
 **File Details**
-![File Details](https://res.cloudinary.com/dfrhy6m3m/image/upload/v1691055934/ckwnmlvmfhuvexq32dl8.png)
+![File Details](https://res.cloudinary.com/dfrhy6m3m/image/upload/v1735849605/lvggguzi7ra0sxwdgmko.png)
 
 **Download File**
-![Download File](https://res.cloudinary.com/dfrhy6m3m/image/upload/v1691056772/rjnoj7tc6qpijlpr1f9v.png)
+![Download File](https://res.cloudinary.com/dfrhy6m3m/image/upload/v1735849779/kawr7ryccwjgd14mcf0z.png)
 
 
 <h1> Tech Stack </h1>
@@ -92,7 +92,6 @@
 
 <h1> Team Members </h1>
 <ul> 
-<li> Sahil Kumar  </li>
 <li> Mukul Jatav </li>
 </ul>
 
