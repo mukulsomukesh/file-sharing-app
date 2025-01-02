@@ -25,7 +25,7 @@ function App() {
         <Navbar />
 
         {/* allroutes */}
-        <Box minH={"90vh"} w="100%" fontFamily="sans-serif" >
+        <Box minH={"90vh"} h="fit-content" py={"70px"}  w="100%" fontFamily="sans-serif" >
           <AllRoutes />
         </Box>
 

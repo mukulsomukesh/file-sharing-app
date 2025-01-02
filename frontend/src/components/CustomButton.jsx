@@ -1,7 +1,7 @@
 import React from "react";
 import { Button } from "@chakra-ui/react";
 
-export default function CustomButton({loadingText, isLoading, onClick, text }) {
+export default function CustomButton({loadingText, isLoading, onClick, text, disabled }) {
   return (
     <Button
       h="55px"
@@ -16,6 +16,7 @@ export default function CustomButton({loadingText, isLoading, onClick, text }) {
       isLoading={isLoading}
       loadingText={isLoading ? loadingText : ""}
       onClick={onClick}
+      disabled={disabled}
     >
       {text}
     </Button>
