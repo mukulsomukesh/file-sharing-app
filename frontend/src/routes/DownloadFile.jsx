@@ -7,6 +7,7 @@ import { useParams } from 'react-router-dom';
 import { checkPasswordForDownloadFile, getSingleFile } from '../redux/AppReducer/action';
 import download from 'downloadjs';
 import Error from "../components/DisplayFiles/Error"
+import CustomButton from '../components/CustomButton';
 
 export default function DownloadFile() {
   const [isProtected, setIsProtected] = useState(true);
@@ -84,7 +85,8 @@ export default function DownloadFile() {
         {/* box that contain file name & download button */}
         {!isLoading && !isError && singleFile ? (
           <Box
-            w="20rem"
+            w="30rem"
+            minW={"200px"}
             p="1rem"
             display="flex"
             flexDirection="column"
@@ -92,9 +94,9 @@ export default function DownloadFile() {
             justify="center"
             align="center"
             border="1px"
-            borderRadius="1rem"
+            borderRadius="10px"
             borderColor="teal"
-            boxShadow="dark-lg"
+            boxShadow="2xl"
           >
             {/* download icon */}
             <Box>
@@ -103,33 +105,54 @@ export default function DownloadFile() {
 
             {/* file name */}
             <HStack m="auto">
-              <Text as="b">Name:</Text>
-              <Text>
+              {/* <Text as="b">Name:</Text> */}
+              <Text as="b">
                 {singleFile.name}.{singleFile.fileType}
               </Text>
             </HStack>
 
             {/* file size */}
-            <HStack m="auto">
+            {/* <HStack m="auto">
               <Text as="b">Size:</Text>
               <Text>1 MB</Text>
-            </HStack>
+            </HStack> */}
 
-            {/* password input */}
-            {singleFile.isProtected ? (
-              <Input value={filePassword} onChange={(e) => setFilePassword(e.target.value)} placeholder="Enter Password" />
-            ) : (
-              ''
-            )}
+          {/* password input */}
+          {singleFile.isProtected ? (
+            <Input
+              value={filePassword}
+              onChange={(e) => setFilePassword(e.target.value)}
+              placeholder="Enter Password"
+              p="7"
+              h="30px"
+              rounded="10px" // Apply 10px border radius to the left
+              border="1px"
+              borderColor="primary.500"
+              bg="primary.100"
+            />
+          ) : (
+            ""
+          )}
 
-            {/* download button and dispatch checkPasswordForDownloadFile on Click */}
-            <Button colorScheme="teal" variant="solid" onClick={() => { dispatch(checkPasswordForDownloadFile(filePassword, param.id)) }} disabled={downloadStatus}>
-              {downloadStatus || downloadFileProcessign ? 'Downloading...' : downloadButtonText }
-            </Button>
-          </Box>
-        ) : (
-          <Error message="File Not Found!" />
-        )}
-      </Flex>
+          {/* download button and dispatch checkPasswordForDownloadFile on Click */}
+          <CustomButton
+            onClick={() => {
+              dispatch(checkPasswordForDownloadFile(filePassword, param.id));
+            }}
+            isLoading={downloadFileProcessign}
+            loadingText={
+              downloadStatus || downloadFileProcessign
+                ? "Downloading..."
+                : downloadButtonText
+            }
+            text="Upload File"
+            disabled={downloadStatus}
+          />
+        </Box>
+      ) : (
+        <Error message="File Not Found!" />
+      )}
+      
+    </Flex>
   );
 }
