@@ -80,7 +80,7 @@ export default function FileMoreInfo() {
 
 
   return (
-    <>
+    <Box h="fit-content" minH={"90vh"} >
 
       {/* loader Display when data is loading */}
       {isLoading ? <Loader /> : ""}
@@ -131,6 +131,6 @@ export default function FileMoreInfo() {
 
       </Box>
 
-    </>
+    </Box>
   )
 }
