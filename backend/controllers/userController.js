@@ -119,4 +119,49 @@ const forgotPassword = async (req, res) => {
         res.status(500).json({ message: 'Something went wrong, please try again' });
     }
 };
-module.exports = { registerUser , loginUser, forgotPassword }
+
+
+
+const resetPassword = async (req, res) => {
+    try {
+      const { email, otp, password } = req.body;
+  
+      // Validate required fields
+      if (!email || !otp || !password) {
+        return res
+          .status(400)
+          .json({ message: "Email, OTP, and password are required" });
+      }
+  
+      // Find user by email (case-insensitive)
+      const user = await User.findOne({
+        email: { $regex: new RegExp(`^${email}$`, "i") },
+      });
+  
+      if (!user) {
+        return res.status(404).json({ message: "User not found" });
+      }
+  
+      // Validate OTP
+      if (user.otp !== parseInt(otp, 10)) {
+        return res.status(400).json({ message: "Invalid OTP" });
+      }
+  
+      // Hash the new password with the same logic as `registerUser`
+      const saltRounds = 4;
+      const hashedPassword = await bcrypt.hash(password, saltRounds);
+      
+      // Update the user's password and clear OTP
+      user.password = hashedPassword;
+      user.otp = undefined; // Clear OTP
+      await user.save();
+  
+      res.status(200).json({ message: "Password updated successfully" });
+    } catch (error) {
+      console.error("Error updating password:", error);
+      res.status(500).json({ message: "Something went wrong, please try again" });
+    }
+  };
+  
+  module.exports = { registerUser, loginUser, forgotPassword, resetPassword };
+  
