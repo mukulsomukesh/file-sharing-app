@@ -1,8 +1,8 @@
 import axios from "axios";
 import * as types from "./actionTypes";
 
-// const END_POINT = "https://wild-plum-woodpecker-tux.cyclic.cloud"
-const END_POINT = "https://file-sharing-app-fod2.onrender.com"
+const END_POINT = process.env.REACT_APP_BACKEND_URL
+
 
 // signup function
 const signUp = (name, email, password)  => async (dispatch) => {
@@ -40,6 +40,8 @@ const login =  (email, password)  => async (dispatch) => {
     
     dispatch({ type: types.USER_LOGIN_SUCCESS, payload: res });
     localStorage.setItem("file-sharing-application-jwt", res.data.token)
+    localStorage.setItem("file-sharing-application-user-name", res.data.user.name)
+
   } catch (err) {
     console.error(err.response.data.error);
     dispatch({

@@ -25,6 +25,8 @@ export default function Navbar() {
 
   const isLogin = useSelector((store) => store.AuthReducer.isLogin)
   const location = useLocation();
+  const userFullName = localStorage.getItem('file-sharing-application-user-name')
+
 
   function handelLogout() {
 
@@ -87,7 +89,7 @@ export default function Navbar() {
                 </Center>
                 <br />
                 <Center fontWeight={"bold"} >
-                  <p>Mukul Jatav</p>
+                  <p>{userFullName}</p>
                 </Center>
                 <br />
                 <MenuDivider />
