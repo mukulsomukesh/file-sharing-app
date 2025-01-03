@@ -1,58 +1,60 @@
 import { Center, Heading, Input, InputGroup, InputRightElement, useToast } from "@chakra-ui/react";
 import { RiFileCopyFill } from "react-icons/ri";
 import React, { useEffect, useState } from "react";
-import { useDispatch, useSelector } from "react-redux";
-
 
 export default function UploadFileSuccess() {
   const [url, setUrl] = useState("");
-  const uploadedFileId = useSelector((state) => state.AppReducer.uploadedFileId)
-  const toast = useToast()
+  const toast = useToast();
 
   useEffect(() => {
-    let location = window.location.href;
-    let id = uploadedFileId;
+    const location = window.location.href;
 
-    location = location.replace("/UploadFileSuccess","/Download")
-    // set url to input
-    setUrl(`${location}/${id}`);
-  }, [uploadedFileId]);
+    // Extract the `id` query parameter from the URL
+    const params = new URLSearchParams(window.location.search);
+    const id = params.get("id");
 
-  // copy to clipboard
+    if (id) {
+      // Replace `/upload_file_success` with `/download` in the current URL
+      const updatedLocation = location.replace("/upload_file_success", "/download");
+
+      // Set the URL with the `id` query parameter
+      setUrl(`${updatedLocation}`);
+    }
+  }, []);
+
+  // Copy to clipboard
   const handleCopy = () => {
     navigator.clipboard.writeText(url);
-
-    return(
-      toast({
-        position:"top-right",
-        title: "Url Copy To ClipBoard!",
-        status: "success",
-        duration: 9000,
-        isClosable: true,
-      })
-    )
+    toast({
+      position: "top-right",
+      title: "URL copied to clipboard!",
+      status: "success",
+      duration: 3000,
+      isClosable: true,
+    });
   };
 
   return (
     <Center
-
-    display={"flex"}
-    flexDirection="column"
-    gap="2rem"
-    bg="transparent"
+      display={"flex"}
+      flexDirection="column"
+      gap="2rem"
+      bg="transparent"
       w="100%"
       h="85vh"
     >
-{/* input for share url */}
+      {/* Input for share URL */}
       <InputGroup cursor="pointer" w="fit-content" bg="white">
-        <Input value={url} w="40vw" minW={"250px"} />
-        <InputRightElement children={<RiFileCopyFill color="teal" />} onClick={handleCopy} />
+        <Input value={url} w="40vw" minW={"250px"} isReadOnly />
+        <InputRightElement
+          children={<RiFileCopyFill color="teal" />}
+          onClick={handleCopy}
+        />
       </InputGroup>
 
-
-      <Heading as="h2" size="md" > Copy Above Link & Share With Your Friends. </Heading>
-
-
+      <Heading as="h2" size="md">
+        Copy the link above & share it with your friends.
+      </Heading>
     </Center>
   );
 }

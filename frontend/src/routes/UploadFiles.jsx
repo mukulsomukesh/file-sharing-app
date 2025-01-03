@@ -22,7 +22,8 @@ export default function UploadFiles() {
   const [process, setProcess] = useState(false);
   const navigate = useNavigate();
   const toast = useToast();
-  const { message, isError, isUploading } = useSelector((state) => state.AppReducer)
+  const { message, isError, isUploading, uploadedFileId } = useSelector((state) => state.AppReducer)
+
 
   useEffect(() => {
 
@@ -30,7 +31,7 @@ export default function UploadFiles() {
     if (isUploading) {
 
       // nagivate user to upload success page
-      navigate("/upload_file_success");
+      navigate(`/upload_file_success?id=${uploadedFileId}`);
 
     }
     else if (isError) {  // if failed to upload on server
