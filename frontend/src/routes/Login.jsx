@@ -20,6 +20,7 @@ import { Navigate, useNavigate } from 'react-router-dom'
 import CustomInput from "../components/CustomInput";
 import CustomButton from "../components/CustomButton";
 import { FaFileShield } from "react-icons/fa6";
+import ForgotPasswordModal from "../components/login/ForgotPasswordModal";
 
 export default function Login() {
 
@@ -117,7 +118,7 @@ export default function Login() {
 
   return (
     <>
-      <Flex flexWrap="wrap" bg="primary.100" color="primary.500">
+      <Flex flexWrap="wrap" bg="primary.100" color="primary.500" mt="-100px">
         {/* Left side - Image */}
         <Flex borderEndRadius="70px" flexDirection="column" color="secondry.50" w={{ base: "100%", md: "50%" }} h="100vh" alignItems="center" justifyContent="center" bgGradient="linear(to-b,  primary.100, primary.100)">
             {/* <Icon as={FaFileShield} boxSize={16} /> */}
@@ -146,7 +147,7 @@ export default function Login() {
             <Flex mt="4" justifyContent={"space-between"} alignItems={"center"} >
               <Text   > Don't have an account,  <span style={{ fontWeight: "bold", cursor: "pointer" }} onClick={() => { navigate("/signup") }} >Signup</span> </Text>
 
-              <Text>Forgot Password</Text>
+<ForgotPasswordModal />
 
             </Flex>
           </Box>
@@ -154,43 +155,6 @@ export default function Login() {
       </Flex>
 
     </>
-    // <Box>
 
-    //   {/* email input */}
-    //   <FormControl isRequired>
-    //     <FormLabel>Email</FormLabel>
-    //     <Input placeholder="Enter Your Email!" value={userInput.email || ""} onChange={(e) => setUserInput((prev) => ({ ...prev, email: e.target.value }))} />
-    //   </FormControl>
-
-    //   {/* password input */}
-    //   <FormControl isRequired mt="1rem">
-    //     <FormLabel>Password</FormLabel>
-    //     <InputGroup size="md">
-    //       <Input
-    //         value={userInput.password || ""} onChange={(e) => setUserInput((prev) => ({ ...prev, password: e.target.value }))}
-    //         type={show ? "text" : "password"}
-    //         placeholder="Enter password" />
-
-    //       <InputRightElement width="4.5rem">
-    //         <Button bg="teal" color="white" h="1.75rem" size="sm" onClick={(e) => { setShow(!show) }}>
-    //           {show ? "Hide" : "Show"}
-    //         </Button>
-    //       </InputRightElement>
-    //     </InputGroup>
-    //   </FormControl>
-
-    //   {/* login button */}
-    //   <Button mt="1rem" color="white" bg="teal" w="full"
-    //     colorScheme="teal"
-    //     isLoading={isProcessing}
-    //     loadingText={isProcessing ? "Please Wait" : ""}
-    //     variant={isProcessing ? "outline" : "solid"}
-    //     onClick={(e) => { handelInputSubmit() }}>
-    //     Login
-    //   </Button>
-
-    //   {/* <Text fontSize={"xs"} as={"b"} color="red">{loginMessage}</Text> */}
-
-    // </Box>
   );
 }

@@ -94,7 +94,7 @@ export default function Signup() {
 
   return (
     <>
-      <Flex flexWrap="wrap" bg="primary.100" color="primary.500">
+      <Flex flexWrap="wrap" bg="primary.100" color="primary.500"  mt="-100px" >
         {/* Left side - Image */}
         <Flex borderEndRadius="70px" flexDirection="column" color="secondry.50" w={{ base: "100%", md: "50%" }} h="100vh" alignItems="center" justifyContent="center" bgGradient="linear(to-b,  primary.100, primary.100)">
             {/* <Icon as={FaFileShield} boxSize={16} /> */}
