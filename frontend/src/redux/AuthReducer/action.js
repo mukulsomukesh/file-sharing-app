@@ -51,6 +51,24 @@ const login =  (email, password)  => async (dispatch) => {
   }
 };
 
+// forgotPassword function
+const forgotPassword =  (email)  => async (dispatch) => {
+  dispatch({ type: types.USER_FORGOT_PASSWORD_PROCESS });
+  
+  try {
+    const res = await axios.post(`${END_POINT}/user/forgot-password`, {
+      email    });
+    console.log("res ", res)
+    dispatch({ type: types.USER_FORGOT_PASSWORD_SUCCESS, payload: res?.message || "Forgot password link sent to your email" });
+
+  } catch (err) {
+console.log("err?.response?.data?.message", err?.response?.data?.message)
+    dispatch({
+      type: types.USER_FORGOT_PASSWORD_FAILURE,
+      payload: err?.response?.data?.message || "Forgot password failed",
+    });
+  }
+};
 
 // check if user already login
 const checkAuthentication =  async (dispatch) => {
@@ -60,4 +78,4 @@ const checkAuthentication =  async (dispatch) => {
   }
 }
 
-export { signUp, login, checkAuthentication };
+export { signUp, login, checkAuthentication, forgotPassword };

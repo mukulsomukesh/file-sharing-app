@@ -5,6 +5,10 @@ const initialState = {
   isProcessing: false,
   loginMessage: "",
 
+  forgotPasswordProcessing:false,
+  forgotPasswordFail:false,
+  forgotPasswordmMssage:"",
+
   isSignup: false,
   signupMessage: "",
 };
@@ -54,6 +58,27 @@ export const reducer = (state = initialState, action) => {
         isProcessing: false,
         signupMessage: payload,
       };
+      case types.USER_FORGOT_PASSWORD_PROCESS:
+        return {
+          ...state,
+          forgotPasswordProcessing:true,
+          forgotPasswordFail:false,
+          forgotPasswordmMssage:"",        
+        };
+      case types.USER_FORGOT_PASSWORD_SUCCESS:
+        return {
+          ...state,
+          forgotPasswordProcessing:false,
+          forgotPasswordFail:false,
+          forgotPasswordmMssage:payload,        
+        };
+      case types.USER_FORGOT_PASSWORD_FAILURE:
+        return {
+          ...state,
+          forgotPasswordProcessing:false,
+          forgotPasswordFail:true,
+          forgotPasswordmMssage:payload,        
+        };
     default:
       return state;
   }

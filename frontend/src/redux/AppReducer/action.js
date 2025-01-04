@@ -1,8 +1,7 @@
 import axios from "axios";
 import * as types from "./actionTypes";
 
-// const END_POINT = "https://wild-plum-woodpecker-tux.cyclic.cloud"
-const END_POINT = "https://file-sharing-app-fod2.onrender.com"
+const END_POINT = process.env.REACT_APP_BACKEND_URL
 
 // upload file
 const uploadToServer = (name, fileType, password, isProtected, pic) => async (dispatch) => {
