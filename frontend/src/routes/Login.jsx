@@ -88,7 +88,7 @@ export default function Login() {
       localStorage.removeItem("file-sharing-app-redirect-url");
 
       if (navigate_url === null) {
-        navigate("/UploadFiles")
+        navigate("/upload_files")
       }
       else {
         navigate(navigate_url)
