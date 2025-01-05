@@ -70,6 +70,19 @@ console.log("err?.response?.data?.message", err?.response?.data?.message)
   }
 };
 
+
+// set new password
+const setNewPassword = (payload) => {
+  return axios
+    .post(`${END_POINT}/user/update-password`, payload)
+    .then((res) => res.data)
+    .catch((err) => {
+      console.error(err);
+      throw err.response?.data || { message: 'Something went wrong' };
+    });
+};
+
+
 // check if user already login
 const checkAuthentication =  async (dispatch) => {
   const token = localStorage.getItem("file-sharing-application-jwt")
@@ -78,4 +91,4 @@ const checkAuthentication =  async (dispatch) => {
   }
 }
 
-export { signUp, login, checkAuthentication, forgotPassword };
+export { signUp, login, checkAuthentication, forgotPassword, setNewPassword };

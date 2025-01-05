@@ -10,6 +10,7 @@ import FileMoreInfo from "./FileMoreInfo";
 import Login from "./Login";
 import Signup from "./Signup";
 import PageNotFound from "./PageNotFound";
+import ResetPassword from "./ResetPassword";
 
 export default function AllRoutes() {
   return (
@@ -41,6 +42,8 @@ export default function AllRoutes() {
        <Route path="/upload_file_success" element={ <PrivateRoutes> <UploadFileSuccess /> </PrivateRoutes> }></Route>
 
        <Route path="/FileDetail/:id" element={ <PrivateRoutes> <FileMoreInfo /> </PrivateRoutes> }></Route>
+
+       <Route path="/reset-password" element={  <ResetPassword /> }></Route>
 
        <Route path="*" element={ <PrivateRoutes> <PageNotFound /> </PrivateRoutes> }></Route>
 
