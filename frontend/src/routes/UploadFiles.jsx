@@ -28,7 +28,7 @@ export default function UploadFiles() {
   useEffect(() => {
 
     // if file successfully uploaded oo server
-    if (isUploading) {
+    if (isUploading && uploadedFileId) {
 
       // nagivate user to upload success page
       navigate(`/upload_file_success?id=${uploadedFileId}`);

@@ -8,19 +8,22 @@ export default function UploadFileSuccess() {
 
   useEffect(() => {
     const location = window.location.href;
-
+  
     // Extract the `id` query parameter from the URL
     const params = new URLSearchParams(window.location.search);
     const id = params.get("id");
-
+  
     if (id) {
-      // Replace `/upload_file_success` with `/download` in the current URL
-      const updatedLocation = location.replace("/upload_file_success", "/download");
-
-      // Set the URL with the `id` query parameter
-      setUrl(`${updatedLocation}`);
+      // Replace `/upload_file_success` with `/download` and append the `id` as a path segment
+      const updatedLocation = location
+        .replace("/upload_file_success", `/download/${id}`)
+        .split("?")[0]; // Remove the query string if any
+  
+      // Set the new URL
+      setUrl(updatedLocation);
     }
   }, []);
+  
 
   // Copy to clipboard
   const handleCopy = () => {
